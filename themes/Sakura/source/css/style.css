@@ -3993,7 +3993,7 @@ li.feature-2 {
 .focusinfo .header-tou img {
     width:130px;
     height:130px;
-    box-shadow:inset 0 0 10px #000;
+    box-shadow:inset 0 0 10px #90c2ff86;
     padding:5px;
     opacity:1;
     transform:rotate(0deg);

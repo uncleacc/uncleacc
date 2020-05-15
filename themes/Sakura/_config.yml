@@ -46,16 +46,13 @@ homePageSortType: -1
 homeArticleShown: 10
 # 背景图片 更好的修改
 bg:
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/1.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/2.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/3.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/4.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/5.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/6.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/7.jpg
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/(3).jpg.webp
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/(4).jpg.webp
-  - https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/cover/(5).jpg.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/1.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/2.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/3.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/4.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/5.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/6.webp
+  - https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/7.webp
 
 # 背景图片样式 空 原图效果 filter-dim 阴影 filter-grid 横条 filter-dot 点点
 bgclass: filter-dot
@@ -65,9 +62,7 @@ startdash:
   - {url: /theme-sakura/, title: Sakura, desc: 本站 hexo 主题, img: /img/startdash/sakura.md.png}
   - {url: https://space.bilibili.com/525424930, title: Bilibili, desc: 博主的b站视频, img: /img/startdash/bilibili.jpg}
   - {url: https://www.hojun.cn/, title: hojun的万事屋, desc: 技术服务, img: /img/startdash/wangshiwu.jpg}
-
-
-
+  
 # your site build time or founded date
 siteBuildingTime: 03/29/2020
 
@@ -105,7 +100,6 @@ movies:
 valine: true
 v_appId: OzumpR4mNEQHal4gBO3BRxj6-gzGzoHsz
 v_appKey: VfTovKhM6MXIwyAbfAogWSLn
-
 
 # 是否开启字数统计
 #不需要使用，直接设置值为false，或注释掉

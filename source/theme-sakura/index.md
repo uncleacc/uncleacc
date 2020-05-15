@@ -4,7 +4,7 @@ comments: true
 date: 2020-03-29 22:53:25
 keywords: Hexo 主题 Sakura 🌸
 description:
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.3/custom/0 (3).jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/img/custom/5.webp
 ---
 Hexo主题Sakura修改自WordPress主题[Sakura](https://github.com/mashirozx/Sakura/)，感谢原作者[Mashiro](https://2heng.xin/)
 

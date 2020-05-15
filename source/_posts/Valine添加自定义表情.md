@@ -12,7 +12,7 @@ date: 2020-05-01 18:43:17
 tags: Hexo
 keywords:
 description: 为你的评论系统添加自定义表情
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img/textbg/0 (3).png
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/36.webp
 ---
 # 前言
 Valine是一个很好的评论系统，今天我发布这篇文章主要是为了让小白少掉一些坑，先来看看成果:laughing:：   

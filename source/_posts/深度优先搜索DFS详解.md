@@ -6,7 +6,7 @@ categories: 算法
 author: uncleacc
 avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg'
 authorLink: uncleacc.github.io
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.1/textbg/13.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/13.webp
 ---
 
 今天学习了深度优先搜索，觉得这一章讲的特别好，连我这么笨的人都看懂了，相信您也一定能看懂，所以我就想把它分享出来，至于为什么不自己写，我觉得原文更加容易理解（绝对不是因为我懒哈），说到这里必须吐槽一下WPS，把图转化成Word还要充钱，还那么贵，哎只能怪我本人太穷，废话少说，贴图吧

@@ -11,7 +11,7 @@ date: 2020-04-11 16:52:13
 tags: Hexo
 keywords:
 description: 讲解的不好的请多多见谅
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.1/textbg/22.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/22.webp
 ---
 
 [文章链接](https://www.jianshu.com/p/191d1e21f7ed/)

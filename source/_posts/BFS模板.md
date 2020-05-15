@@ -7,7 +7,7 @@ authorLink: uncleacc.github.io
 tags: [模板,算法]
 categories: 算法
 keywords:
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.1/textbg/20.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/20.webp
 ---
 
 上一篇文章讲了dfs的记忆化搜索，来看看上一道题 “仙岛求药” 

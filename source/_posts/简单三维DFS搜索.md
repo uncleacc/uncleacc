@@ -12,7 +12,7 @@ date: 2020-05-03 16:24:11
 tags: DFS
 keywords:
 description: 简单三维DFS搜索
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.3/textbg/0（4）.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/37.webp
 ---
 # 题目
 [problem link](http://acm.hdu.edu.cn/showproblem.php?pid=2102)   

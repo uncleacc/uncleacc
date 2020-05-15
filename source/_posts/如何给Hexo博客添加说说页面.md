@@ -12,7 +12,7 @@ date: 2020-04-22 21:27:19
 tags:
 keywords:
 description: 为你的博客添加说说界面
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.1/textbg/11.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/11.webp
 ---
 # 前言
 最近看了许多大佬的博客，终于明白了我到底有多弱:weary:,不过虽然我菜，但是Chinese还是能看懂的:grin:,直接按照教程往下走，感谢把我教会的[原文1](https://cungudafa.gitee.io/post/ec85.html)和[原文2](https://cndrew.cn/2019/09/11/shuoshuo/)

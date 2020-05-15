@@ -7,7 +7,7 @@ authorLink: uncleacc.github.io
 title: dfs记忆化搜索
 date: 2020-04-04 22:19:57
 tags: 算法
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.1/textbg/21.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/21.webp
 ---
 
 今天学习了记忆化搜索，也练习了许多题，我果然是一个蒟蒻（qwq）

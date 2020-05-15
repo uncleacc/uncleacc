@@ -6,7 +6,7 @@ categories: 算法
 author: uncleacc
 avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg'
 authorLink: uncleacc.github.io
-photos: https://i0.hdslb.com/bfs/article/fcd3d457a7d42ac54180e7d192075dccfe9fc2d1.jpg@1200w_1696h.webp
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/24.webp
 ---
 ># 暴力筛选
 这种方法我就不多说了，一个数是素数则其只能被1和它本身整除，抓住这个特性，从2开始遍历到这个数减1，如果该数能整除其中任意一个数，则其都不是素数，如果想筛选某个范围内的，则遍历这个区间，从左端点遍历到右端点，该数是素数则将其标记为0，遍历完以后，数组中是0的就是合数，非0是素数，时间复杂度On^2

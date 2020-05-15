@@ -10,7 +10,7 @@ date: 2020-04-10 15:52:25
 tags: 'Hexo'
 keywords:
 description: 主题美化
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.1/textbg/23.jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/23.webp
 ---
 
 ### https://www.jianshu.com/p/e378b320c184

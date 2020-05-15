@@ -4,7 +4,7 @@ date: 2020-03-29 22:14:36
 keywords: 关于
 description: 
 comments: false
-photos: https://cdn.jsdelivr.net/gh/uncleacc/img@1.3/custom/0 (2).jpg
+photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/custom/0.webp
 ---
 {% raw %}
 <!-- 因为vue和botui更新导至bug,现将对话移至js下的botui中配置 -->
