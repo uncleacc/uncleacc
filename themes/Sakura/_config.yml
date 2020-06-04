@@ -69,7 +69,6 @@ siteBuildingTime: 03/29/2020
 #social  url, img PC端配置
 social:
   wechat: {url: /#, qrcode: /img/custom/wechat.jpg, img: /img/social/wechat.png}
-  github: {url: http://github.com/uncleacc, img: /img/social/github.png}
   qq: {url: https://wpa.qq.com/msgrd?v=3&uin=601162956&site=qq&menu=yes, img: /img/social/qq.png}
   # qq: {url: /#, qrcode: /img/custom/qq.jpg, img: /img/social/qq.png}
   # wangyiyun: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/wangyiyun.png}
@@ -77,7 +76,7 @@ social:
   # email: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/email.svg}
   csdn: {url: https://blog.csdn.net/AGNING, img: /img/social/csdn.png}
   bilibili: {url: https://space.bilibili.com/525424930, img: /img/social/bilibili.png}
-
+  github: {url: http://github.com/uncleacc, img: /img/social/github.png}
 #social  url, img 移动端配置
 msocial:
   github: {url: http://github.com/uncleacc, fa: fa-github, color: 333}
