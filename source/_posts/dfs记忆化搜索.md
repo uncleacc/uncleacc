@@ -3,7 +3,7 @@ layout: post
 categories: 算法
 author: uncleacc
 avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg'
-authorLink: uncleacc.github.io
+authorLink:
 title: dfs记忆化搜索
 date: 2020-04-04 22:19:57
 tags: 算法

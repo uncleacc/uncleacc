@@ -11,45 +11,34 @@
                         <%- body %>
                 </div>
                 <%- partial('_widget/search/insight') %>
-                    <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
-                        <div class="openNav no-select" style="height: 50px;">
-                            <div class="iconflat no-select" style="width: 50px; height: 50px;">
-                                <div class="icon"></div>
-                            </div>
-                            <div class="site-branding search-form-submit">
-                                <i class="iconfont js-toggle-search iconsearch icon-search"></i>
-                            </div>
-                        </div>
+                <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
+                <div class="openNav no-select" style="height: 50px;">
+                    <div class="iconflat no-select" style="width: 50px; height: 50px;">
+                        <div class="icon"></div>
+                    </div>
+                    <div class="site-branding search-form-submit">
+                        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+                    </div>
+                </div>
         </section>
         <%- partial('_partial/mheader', null, {cache: !config.relative_link}) %>
             <%- partial('_partial/aplayer', null, {cache: !config.relative_link}) %>
                 <!-- 动态线条 -->
                 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
-                <!-- 结束 -->
                 <!-- 彩带 -->
                 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>
-                <!-- 结束 -->
                 <!-- 樱花飘落 -->
                 <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script> -->
-                <!-- 结束 -->
                 <!-- 伴娘 -->
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
                 <!-- 这条在sakura中已有，可不添加 -->
                 <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
-                <!-- 结束 -->
-                <!-- 前往github的彩带 -->
-                <!-- <a href="https://github.com/uncleacc"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a> -->
-                <!-- 结束 -->
                 <!-- 预加载 -->
                 <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
-                <!-- 结束 -->
                 <!-- 点击出现社会主义彩色文字 -->
                 <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script> -->
-                <!-- 点击出现爱心 -->
-                <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script> -->
-                <!-- 添加aplayer播放器 -->
-                <%- partial('_partial/music') %>
-
+                <!-- 点击出现爱心 -->   
+                <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script> -->  
+                <%- partial('_partial/music') %><!-- 添加aplayer播放器 -->
     </body>
-
     </html>

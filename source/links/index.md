@@ -102,4 +102,8 @@ links:
       img: https://hexo.yuanjh.cn/images_out/avatar.png
       name: 闻鸡起舞
       desc: 逝者如斯夫，不舍昼夜(IT,Java,Python,Web,量化,机器学习)
+    - url: https://www.xiangshu233.cn
+      img: https://cdn.jsdelivr.net/gh/xiangshu233/cdn@1/img/custom/avatar.jpg
+      name: 乡树
+      desc: 谁会给你制定做事的规矩，除了你自己 那还有谁
 ---
