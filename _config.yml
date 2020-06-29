@@ -87,7 +87,7 @@ deploy:
     branch: master
   - type: baidu_url_submitter
 backup:
-    type: git
+  - type: git
     repository:
       github: git@github.com:uncleacc/uncleacc.github.io.git
     branch: backup
