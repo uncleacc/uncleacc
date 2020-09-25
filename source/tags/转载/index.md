@@ -11,7 +11,6 @@ photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/9.webp
 转载文章
 </font>
 </center>
-
 [二分边界问题](https://www.cnblogs.com/KyleDeng/p/9378187.html): 很好讲解了二分的边界问题💪
 
 [判断素数最快的方法](https://blog.csdn.net/songyunli1111/article/details/78690447/): 时间复杂度到了O(sqrt(n)/3)
@@ -23,4 +22,8 @@ photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/9.webp
 [马拉车算法](https://www.jianshu.com/p/392172762e55)：查找最大回文子串O(N)
 
 [链式前向星](https://blog.csdn.net/ACdreamers/article/details/16902023)：链式前向星
+
+[Git教程](https://www.liaoxuefeng.com/wiki/896043488029600) ：浅显易懂的Git教程
+
+[博弈论入门](https://www.cnblogs.com/Khada-Jhin/p/9609561.html) ：巴什，尼姆博弈，威佐夫博弈，斐波那契博弈，SG定理
 
