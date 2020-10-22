@@ -23,9 +23,14 @@ a:hover {
     text-decoration: underline;
     cursor: url(https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/cursor/No_Disponible.cur), auto;
 }
-.mybg {
+.first_img {
+    float: left;
     display: inline-block;
     margin: 0px 150px 150px 0px;
+}
+.mybg {
+    display: inline-block;
+    margin: 10px 100px auto 0px;
 }
 .myImg {
     width: 800px;
@@ -40,14 +45,20 @@ a:hover {
     font-size: 26px;
     font-family: 'Roboto', sans-serif;
 }
+.But_1 {
+    width: 300px;
+    height: 30px;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    border-width: 0;
+}
 .wrap-about {
     display: inline-block;
     font-weight: 500;
     font-size: 13px;
     color: #2F2F2F;
-    height: 250px;
+    height: 300px;
     width: 250px;
-    margin: 150px 300px 150px auto;
+    margin: 100px 300px 150px auto;
 }
 .wrap-card {
     margin: 30px auto;

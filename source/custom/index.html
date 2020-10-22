@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>关于我</title>
     <link rel="stylesheet" href="mystyle.css">
+    <script>
+        function back(){
+            var head = document.getElementById("back");
+            window.setTimeout('window.location="https://www.fezhu.top"', 1000);
+        }
+    </script>
 </head>
 <body>
-    <div class="mybg">
+    <div class="first_img">
         <img src="https://cdn.jsdelivr.net/gh/uncleacc/Sucai/4.jpg" class="myImg">
     </div>
     <div class="wrap-about">
+        <button id="back" onclick="back()" class="But_1">Back to blog</button>
+        <br><br><br>
         <table class="w-content">
             <tbody>
             <tr>

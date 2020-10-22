@@ -33,8 +33,12 @@ links:
       img: https://cdn.jsdelivr.net/gh/drew233/cdn/dreww.webp
       name: Uncle_drew
       desc: Hand down,man down
+    - url: https://blog.todest.cn
+      img: https://s.gravatar.com/avatar/4756cb352ec7f58884fdc0c219ea00dc?s=80
+      name: 亦往沧劫
+      desc: 有什么不会的找他就对了
     - url: https://blog.nowcoder.net/bigbrox
-      img: https://cloud.moezx.cc/Picture/svg/landscape/fields.svg
+      img: https://images.nowcoder.com/images/20181031/5848199_1540947872592_C6F78883750E991BBD9DF7D82D942491?x-oss-process=image/resize,m_mfit,h_200,w_200
       name: 强哥
       desc: 不时看看强哥的博客，感觉思路都开阔了
     - url: http://www.ryuichi.tech/

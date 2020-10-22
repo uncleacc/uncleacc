@@ -7,9 +7,11 @@ photos: https://cdn.jsdelivr.net/gh/uncleacc/Img/custom/4.webp
 ---
 <!-- 说说 -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/uncleacc/my_style/shuoshuo.css">
+
 <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <!-- 结束 -->
 {% raw %}
+
 <script>
 var img = "https://cdn.jsdelivr.net/gh/uncleacc/cdn/img/custom/avatar.jpg"; //说说旁边显示的头像
 var appID = "s3FE3ET00znFbcF4XOgNb9fn-MdYXbMMI";
@@ -31,6 +33,7 @@ var atemoji_array={
 </script>
 {% endraw %}
 <!-- <div id="artitalk_main"></div> -->
+
 <div id="lazy"></div>
 <div id="artitalk"></div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/uncleacc/my_style/artitalk.js"></script>
