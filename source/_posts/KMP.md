@@ -33,7 +33,7 @@ BF算法，也就是人人都会的指针回朔暴力算法，略过
 
 ## 求解NEXT
 
-用next[i]表示i位置之前字符串的最长公共前后缀
+用next[i]表示i位置之前字符串的最长公共前后缀，所以求解next数组其实就是求模式串每一个前缀子串的最大公共前后缀！
 
 ABABABAB
 
@@ -43,7 +43,7 @@ ABABABAB
 
 ```c
 void get_next(int len){
-	int i=0, j=-1;
+	int i=0, j=-1;  //这里j是初始化为-1！
     ne[0]=-1;
 	while(i<len){
 		if(j==-1 || ch[i]==ch[j]){
@@ -139,6 +139,8 @@ next数组并不是最优的，当一个模式串所有字符都相同，比如T
 
 ## 求解nextval数组
 
+当前位置的next数组值为下标的前一个位置的字符如果和当前字符一样，则当前位置的nextval值就是前面位置的nextval值，否则就是当前位置的next数组值，初始化第一个位置的nextval值为-1
+
 ```c
 void get_nextval(int len){
 	int i=0, j=-1;
@@ -155,3 +157,4 @@ void get_nextval(int len){
 }
 ```
 
+也可以先通过求解出next数组，然后求解出nextval数组

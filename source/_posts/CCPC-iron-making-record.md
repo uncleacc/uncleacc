@@ -1,8 +1,8 @@
 ---
 title: CCPC打铁记
-author: uncleacc
+author: Uncleacc
 avatar: >-
-  https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg
+  https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png
 authorAbout: 一个好奇的人
 authorDesc: 一个好奇的人
 comments: true
