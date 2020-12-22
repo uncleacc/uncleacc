@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Uncle_ac blog</title>
+  <title itemprop="name">排序算法 | Uncle_ac blog</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -382,102 +382,295 @@
   </div>
 </header>
  
-                  <div class="pattern-center-blank"></div>
-  
-  <div id="content" class="site-content">
-    <article class="post-item post-301 page type-page status-publish has-post-thumbnail hentry">
-      <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>css-3d旋转相册</title>
-		<link rel="stylesheet" href="./css/hovertree.css" />
-	</head>
-	<body>
-		<div class="hovertreeinfo">
-			<h2>韩孝周.love</h2>
-		</div>
-		<!--/*外层最大容器*/-->
-		<div class="wrap">
-			<!--	/*包裹所有元素的容器*/-->
-			<div class="cube">
-				<!--前面图片 -->
-				<div class="out_front">
-					<img src="img/img01.jpg " class="pic" />
-				</div>
-				<!--后面图片 -->
-				<div class="out_back">
-					<img src="img/img02.jpg" class="pic"/>
-				</div>
-				<!--左图片 -->
-				<div class="out_left">
-					<img src="img/img03.jpg" class="pic" />
-				</div>
-				<div class="out_right">
-					<img src="img/img04.jpg" class="pic" />
-				</div>
-				<div class="out_top">
-					<img src="img/img05.jpg" class="pic" />
-				</div>
-				<div class="out_bottom">
-					<img src="img/img06.jpg" class="pic" />
-				</div>
-				<!--小正方体 -->
-				<span class="in_front">
-					<img src="img/img07.jpg" class="in_pic" />
-				</span>
-				<span class="in_back">
-					<img src="img/img08.jpg" class="in_pic" />
-				</span>
-				<span class="in_left">
-					<img src="img/img09.jpg" class="in_pic" />
-				</span>
-				<span class="in_right">
-					<img src="img/img10.jpg" class="in_pic" />
-				</span>
-				<span class="in_top">
-					<img src="img/img11.jpg" class="in_pic" />
-				</span>
-				<span class="in_bottom">
-					<img src="img/img12.jpg" class="in_pic" />
-				</span>
-			</div>
-		</div>
-		<!-- 网易云外链音乐 -->
-		<!-- 只有发布和编译到端口才会自动播放 -->
-		<div style="position:absolute;right:0px;bottom:0px;">
-			<iframe frameborder="no" border="0" marginwidth="0" marginheight="100%" width=330 height=86 
-				src="//music.163.com/outchain/player?type=2&id=1370748318&auto=1&height=66"></iframe>
-		</div>
-		<!-- 本地音乐，双击index.html -->
-		<div style="position:absolute;left:0px;bottom:0px;">
-			<!-- 隐藏播放条：删除ontrols="controls"部分 -->
-			<audio autoplay="autopaly" loop="loop" controls="controls" id="audios">
-				<source src="music/qianyuqianxun.mp3" type="audio/mp3" />
-			</audio>
-		</div>
-		<script>
-			var music = document.getElementById('video');
-			var state = 0;
-			document.addEventListener('touchstart', function(){    
-				  if(state==0){        
-					  music.play();        
-					  state=1;    
-				  }  
-			  }, false);
-			document.addEventListener("WeixinJSBridgeReady", function () {    
-				  music.play();
-			  }, false);  
-			//循环播放
-			music.onended = function () {    
-				music.load();    
-				music.play();
-			}    
-		</script>
-	</body>
-</html>
+                <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
 
-      <!-- .entry-content -->
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/90.webp);" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/90.webp">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      排序算法</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png">
+          </a>
+        </span>
+        <span>
+          <a href="">Uncleacc</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-12-22<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <!-- 安装插件npm install hexo-wordcount --save -->
+        <span class="post-count">2.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">10分</span>
+      </span>
+    </span>
+</div>
+
+        
+        <!-- 添加完成 -->    
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <blockquote>
+<p>本文介绍三种排序方式：“希尔排序”、“快速排序”、“堆排序”</p>
+</blockquote>
+<h2 id="希尔排序">希尔排序</h2>
+<p>希尔排序是第一批打破O(n<sup>2</sup>)的算法之一，在20世纪中期就提出来了，它的平均复杂度O(n<sup>1.3</sup>)，一般的交换排序，倘若一个很长的序列最大值在第一个，那么这个值就要交换n-1次才能到达正确位置，这是很浪费时间的，而希尔排序很好的解决了这一点，它的思想是给这个序列分组，把每一组都排成有序，然后再分，直到分的组数为n(序列长度)个为止，它巧妙在于分组的方式，并不是相邻的是一组，而是相隔几个分成一组，这样当交换序列时可以跳着交换，大大加快了时间，虽然可能一个小的值交换到后面去了，离他的最终位置变远了，但是就算遇到这种情况也可以跳着回来，总之时间平均上加快了很多。</p>
+<h3 id="具体实现">具体实现</h3>
+<p>首先确定分组间隔，最科学的间隔：从n/2开始，每次除以2直到最终等于1。<s>不要问我为什么，我也不知道</s></p>
+<p>确定了间隔就是简单的对每一组都进行插入排序了</p>
+<h3 id="代码">代码</h3>
+<pre><code class="language-c">void Xier(node &amp;L)&#123;
+	for(int k=L.length/2;k&gt;0;k/=2)&#123;  //分组间隔
+		for(int m=1;m&lt;=k;m++)&#123;  //k组
+        	for(int i=m+k;i&lt;=L.length;i+=k)&#123;  //对每一组进行插入排序
+                int temp=L.arr[i],p;  //将L.arr[i]插入到序列中
+                for(p=i-k;p&gt;=1 &amp;&amp; L.arr[p]&gt;temp;p-=k) L.arr[p+k]=L.arr[p];  //找到插入位置，并把插入位置后面的数后移一位
+                L.arr[p+k]=temp;  //插入进去
+            &#125;
+        &#125;
+	&#125;
+&#125;
+</code></pre>
+<p>上面的代码是4重for循环，这里可以优化成三重，因为插入排序是从前往后，不需要一组一组进行，可以同时进行:</p>
+<h3 id="改进代码">改进代码</h3>
+<pre><code class="language-c">void Xier(node &amp;L)&#123;
+	for(int k=L.length/2;k&gt;0;k/=2)&#123;
+		for(int i=k+1;i&lt;=L.length;i++)&#123;  //这里去掉一重循环，改掉初始化为k+1，递增方式改为i++
+			int temp=L.arr[i],p;
+			for(p=i-k;p&gt;=1 &amp;&amp; L.arr[p]&gt;temp;p-=k) L.arr[p+k]=L.arr[p];
+			L.arr[p+k]=temp;
+		&#125;
+	&#125;
+&#125;
+</code></pre>
+<h2 id="快速排序">快速排序</h2>
+<blockquote>
+<p>一直用sort从没手写过快排(逃)，虽然之前写过，但是这次还是无限debug</p>
+</blockquote>
+<p>大致思路</p>
+<p>每次找到一个基准值，定义两个哨兵，一个从前往后搜，一个从后往前搜，前面找比基准值大的，后面的找比基准值小的，当两面都找到时就交换，最后把基准值和哨兵位置交换(出来循环哨兵一定站到同一个位置)，这样下来序列就被分为了(左面部分)都比基准值小(基准值)(右面部分)都比基准值大。然后再对基准值的左面和右面的进行同样的操作。</p>
+<h3 id="代码-v2">代码</h3>
+<pre><code class="language-c">void Quick(node &amp;L,int l,int r)&#123;
+	if(l&gt;=r) return ;  //当序列中存在两个值才进行排序
+	int temp=L.arr[l];  //最左面的值作为基准值
+	int i=l,j=r;  //两个哨兵
+	while(i&lt;j)&#123;
+		while(i&lt;j &amp;&amp; L.arr[j]&gt;=temp) j--;  //优先从右开始找，原因一会单独拿出来说
+		while(i&lt;j &amp;&amp; L.arr[i]&lt;=temp) i++;
+		swap(L.arr[i],L.arr[j]);  //交换两个哨兵
+	&#125;
+	swap(L.arr[i],L.arr[l]);  //基准值归位
+	Quick(L,l,i-1);  //处理左面
+	Quick(L,i+1,r);  //处理右面
+&#125;
+</code></pre>
+<h3 id="为什么一定要右哨兵先动？">为什么一定要右哨兵先动？</h3>
+<p>这是困扰了我很久的问题！因为我们选择最左面的位置作为基准值！</p>
+<p>看这个例子: 2 1 3 4 5</p>
+<p>从左开始的话就是先找到3，然后从右开始找不到比2小的就也走到了3这个位置，但是3是比2大的！不能和2交换否则就出错了，基准值左面有比基准值还大的数！所以当先找比基准值大的数时可能会指针停留在这个数，最后不能进行交换，但是如果先找比基准值小的最后即使指针停留在这个数这里也是可以交换的</p>
+<h2 id="堆排序">堆排序</h2>
+<p>原始思想: 把序列看成一个完全二叉树，每一个数都是树的叶子节点，然后相邻节点进行比较得到较大的作为父亲节点，如此下来，二叉树的根节点就是序列最大值，然后把这个值的来源处叶子节点设为最小值，如此反复即可得到从大到小的序列，因为找了n次，每次往上递是logn，<code>时间复杂度为O(nlog(n))</code>，特别巧妙的算法。</p>
+<p>改进后:</p>
+<p>不拿序列每一个数作为树的底层，而是每一个节点，建立一颗二叉树满足当前节点值大于左右孩子节点值，这样的二叉树叫做大根堆，那么根节点就是最大值，这里每次得到序列最大值之后是把它和序列末尾值进行交换，交换后把堆进行调整保持大根堆的模样，然后继续调整从1到n-1的二叉树为大根堆，如此反复得到最终的非递减序列</p>
+<h3 id="堆调整函数-每次交换后">堆调整函数(每次交换后)</h3>
+<pre><code class="language-c">//和插入排序非常相似，把根节点插入到合适位置，其他位置后移一位
+void HeapAdjust(node &amp;L,int s,int e)&#123;
+	int temp=L.arr[s];  //得到根
+	for(int i=2*s;i&lt;=e;i*=2)&#123;  //往下一层一层调整
+		if(i&lt;e &amp;&amp; L.arr[i+1]&gt;L.arr[i]) i++;  //得到左右孩子较大的
+		if(temp&gt;L.arr[i]) break;  //如果父亲节点大于左右孩子较大的那个则堆满足大根堆了
+		L.arr[s]=L.arr[i];  //否则就把父亲节点赋值为左右孩子较大的那个
+		s=i;  //更新父亲
+	&#125;
+	L.arr[s]=temp;  //最后把根节点插入到最终位置
+&#125;
+</code></pre>
+<p>对于一个给定序列还要建初始堆，所谓建初始堆，就是把这个序列的从右往左第一个非叶子节点子树给调整了，然后往上一层一层调整，最终大根树就建好了</p>
+<h3 id="建初始树-堆排序开始时">建初始树(堆排序开始时)</h3>
+<pre><code class="language-c">void Heap(node &amp;L)&#123;
+	//建初堆 
+	for(int i=L.length/2;i&gt;0;--i) HeapAdjust(L,i,L.length);  //调整第一个非叶子节点子树
+	for(int i=L.length;i&gt;1;--i)&#123;  
+		swap(L.arr[1],L.arr[i]);  //交换根节点和序列末尾值
+		HeapAdjust(L,1,i-1);  //调整前面的
+	&#125;
+&#125;
+</code></pre>
+<h2 id="全代码">全代码</h2>
+<pre><code class="language-c">#include &lt;bits/stdc++.h&gt;
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+using namespace std;
+const int MAXN=1e3;
+const int INF=0x3f3f3f3f;
+const double eps=1e-4;
+struct node&#123;
+	int arr[MAXN];
+	int length;
+&#125;;
+//交换函数 
+void swap(int &amp;a,int &amp;b)&#123;
+	int c=a;
+	a=b;
+	b=c;
+&#125;
+//希尔排序 
+void Xier(node &amp;L)&#123;
+	for(int k=L.length/2;k&gt;0;k/=2)&#123;
+		for(int i=k+1;i&lt;=L.length;i++)&#123;
+			int temp=L.arr[i],p;
+			for(p=i-k;p&gt;=1 &amp;&amp; L.arr[p]&gt;temp;p-=k) L.arr[p+k]=L.arr[p];
+			L.arr[p+k]=temp;
+		&#125;
+	&#125;
+&#125;
+//快速排序 
+void Quick(node &amp;L,int l,int r)&#123;
+	if(l&gt;=r) return ;
+	int temp=L.arr[l];
+	int i=l,j=r;
+	while(i&lt;j)&#123;
+		while(i&lt;j &amp;&amp; L.arr[j]&gt;=temp) j--;
+		while(i&lt;j &amp;&amp; L.arr[i]&lt;=temp) i++;
+		swap(L.arr[i],L.arr[j]);
+	&#125;
+	swap(L.arr[i],L.arr[l]);
+	Quick(L,l,i-1);
+	Quick(L,i+1,r); 
+&#125;
+//堆调整 
+void HeapAdjust(node &amp;L,int s,int e)&#123;
+	int temp=L.arr[s];
+	for(int i=2*s;i&lt;=e;i*=2)&#123;
+		if(i&lt;e &amp;&amp; L.arr[i+1]&gt;L.arr[i]) i++;
+		if(temp&gt;L.arr[i]) break;
+		L.arr[s]=L.arr[i];
+		s=i;
+	&#125;
+	L.arr[s]=temp;
+&#125;
+//堆排序 
+void Heap(node &amp;L)&#123;
+	//建初堆 
+	for(int i=L.length/2;i&gt;0;--i) HeapAdjust(L,i,L.length);
+	for(int i=L.length;i&gt;1;--i)&#123;
+		swap(L.arr[1],L.arr[i]);
+		HeapAdjust(L,1,i-1);
+	&#125;
+&#125;
+//排序 
+void Sort(node &amp;CL,node &amp;DL,node &amp;EL)&#123;
+	Xier(CL);
+	Quick(DL,1,DL.length);
+	Heap(EL);
+&#125;
+//打印排序后序列 
+void Print(node CL,node DL,node EL)&#123;
+	cout&lt;&lt;&quot;希尔排序:\n&quot;;
+	for(int i=1;i&lt;=CL.length;i++) cout&lt;&lt;CL.arr[i]&lt;&lt;' ';
+	cout&lt;&lt;'\n';
+	cout&lt;&lt;&quot;快速排序:\n&quot;;
+	for(int i=1;i&lt;=DL.length;i++) cout&lt;&lt;DL.arr[i]&lt;&lt;' ';
+	cout&lt;&lt;'\n';
+	cout&lt;&lt;&quot;堆排序:\n&quot;;
+	for(int i=1;i&lt;=EL.length;i++) cout&lt;&lt;EL.arr[i]&lt;&lt;' ';
+	cout&lt;&lt;'\n';
+&#125;
+int main()
+&#123; 
+	node CL,DL,EL;
+	cout&lt;&lt;&quot;请输入序列长度:\n&quot;; 
+	cin&gt;&gt;CL.length;
+	DL.length=EL.length=CL.length;
+	cout&lt;&lt;&quot;请输入序列:\n&quot;;
+	for(int i=1;i&lt;=CL.length;i++)&#123;
+		cin&gt;&gt;CL.arr[i];
+		DL.arr[i]=CL.arr[i];
+		EL.arr[i]=CL.arr[i];
+	&#125;
+	Sort(CL,DL,EL);
+	Print(CL,DL,EL);
+	return 0;
+ &#125;
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/WeChanSQ.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2020/12/10/BeautifyWin10/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/90.webp" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/90.webp">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                win10美化</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
 <div id="vcomments"></div>
 <script>
@@ -507,43 +700,26 @@
 </script>
 
   
-      <div class="single-reward">
-        <div class="reward-open">赏
-          <div class="reward-main">
-            <ul class="reward-row">
-              <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/AliPayQR.jpg"></li>
-              <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/WeChanSQ.jpg"></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
-      <footer class="post-footer">
-        <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
-        <div class="post-tags">
-        </div>
-        <div class="post-share">
-          <div class="social-share sharehidden share-component"></div>
-          <i class="iconfont show-share icon-forward"></i>
-        </div>
-      </footer><!-- .entry-footer -->
-    </article>
-      <!-- #post-## -->
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="/about/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png" itemprop="image" alt="Uncleacc" height="70" width="70"></a>
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png" itemprop="image" alt="Uncleacc" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
-            <a target="_blank" href="https://uncleacc.github.io" itemprop="url" rel="author noopener">Uncleacc</a>
+            <a href="" itemprop="url" rel="author">Uncleacc</a>
             </h3>
           </div>
         </div>
         <hr>
-        <p><i class="iconfont icon-write"></i>真正的大师永远怀着一颗学徒的心</p>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
       </section>
+    </main><!-- #main -->
   </div><!-- #primary -->
 </div>
+
+
+
+
             </div>
             <div class="ins-search">
     <div class="ins-search-mask"></div>
