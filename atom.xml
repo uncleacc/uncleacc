@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Uncle_ac blog</title>
+  
+  <subtitle>Enrich--every day</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://www.fezhu.top/"/>
+  <updated>2020-12-11T00:36:51.962Z</updated>
+  <id>https://www.fezhu.top/</id>
+  
+  <author>
+    <name>一只努力变强的蒟蒻仔</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>win10美化</title>
+    <link href="https://www.fezhu.top/2020/12/10/BeautifyWin10/"/>
+    <id>https://www.fezhu.top/2020/12/10/BeautifyWin10/</id>
+    <published>2020-12-10T13:48:52.000Z</published>
+    <updated>2020-12-11T00:36:51.962Z</updated>
+    
+    <summary type="html">
+    
+      win10美化简单教程
+    
+    </summary>
+    
+      <category term="技术" scheme="https://www.fezhu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="win10美化" scheme="https://www.fezhu.top/tags/win10%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>十字链表存储稀疏矩阵</title>
+    <link href="https://www.fezhu.top/2020/12/03/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5/"/>
+    <id>https://www.fezhu.top/2020/12/03/十字链表存储稀疏矩阵/</id>
+    <published>2020-12-03T14:00:40.000Z</published>
+    <updated>2020-12-03T14:26:45.268Z</updated>
+    
+    <summary type="html">
+    
+      数据结构课程设计使用十字链表存储稀疏矩阵并做矩阵相乘
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="https://www.fezhu.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Binary Tree</title>
+    <link href="https://www.fezhu.top/2020/11/30/Binary-Tree/"/>
+    <id>https://www.fezhu.top/2020/11/30/Binary-Tree/</id>
+    <published>2020-11-30T14:11:18.000Z</published>
+    <updated>2020-12-22T00:36:52.826Z</updated>
+    
+    <summary type="html">
+    
+      二叉树数据结构实验
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="数据结构" scheme="https://www.fezhu.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SPFA</title>
+    <link href="https://www.fezhu.top/2020/11/26/SPFA/"/>
+    <id>https://www.fezhu.top/2020/11/26/SPFA/</id>
+    <published>2020-11-26T01:31:25.000Z</published>
+    <updated>2020-12-22T00:36:52.830Z</updated>
+    
+    <summary type="html">
+    
+      判负环的SPFA算法
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://www.fezhu.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>倍增与tarjan求解lca</title>
+    <link href="https://www.fezhu.top/2020/11/23/bz&amp;&amp;tarjan/"/>
+    <id>https://www.fezhu.top/2020/11/23/bz&amp;&amp;tarjan/</id>
+    <published>2020-11-23T13:50:44.000Z</published>
+    <updated>2020-12-22T00:36:52.832Z</updated>
+    
+    <summary type="html">
+    
+      谈谈我对倍增和tarjan算法的理解
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="tarjan" scheme="https://www.fezhu.top/tags/tarjan/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KMP</title>
+    <link href="https://www.fezhu.top/2020/11/05/KMP/"/>
+    <id>https://www.fezhu.top/2020/11/05/KMP/</id>
+    <published>2020-11-05T13:58:19.000Z</published>
+    <updated>2020-12-22T00:36:52.828Z</updated>
+    
+    <summary type="html">
+    
+      KMP算法
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="KMP" scheme="https://www.fezhu.top/tags/KMP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CCPC打铁记</title>
+    <link href="https://www.fezhu.top/2020/10/22/CCPC-iron-making-record/"/>
+    <id>https://www.fezhu.top/2020/10/22/CCPC-iron-making-record/</id>
+    <published>2020-10-22T04:18:00.000Z</published>
+    <updated>2020-12-22T00:36:52.827Z</updated>
+    
+    <summary type="html">
+    
+      第一次竞赛，以打铁结尾
+    
+    </summary>
+    
+      <category term="生活" scheme="https://www.fezhu.top/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="竞赛" scheme="https://www.fezhu.top/tags/%E7%AB%9E%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一元多项式的相加及相乘</title>
+    <link href="https://www.fezhu.top/2020/10/21/%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E7%9B%B8%E5%8A%A0%E5%8F%8A%E7%9B%B8%E4%B9%98/"/>
+    <id>https://www.fezhu.top/2020/10/21/一元多项式的相加及相乘/</id>
+    <published>2020-10-21T14:42:03.000Z</published>
+    <updated>2020-12-22T00:36:52.853Z</updated>
+    
+    <summary type="html">
+    
+      数据结构实验
+    
+    </summary>
+    
+      <category term="记录" scheme="https://www.fezhu.top/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="数据结构" scheme="https://www.fezhu.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LCA最小公共祖先</title>
+    <link href="https://www.fezhu.top/2020/09/29/LCA_problem/"/>
+    <id>https://www.fezhu.top/2020/09/29/LCA_problem/</id>
+    <published>2020-09-29T13:44:21.000Z</published>
+    <updated>2020-12-22T00:36:52.829Z</updated>
+    
+    <summary type="html">
+    
+      最小公共祖先问题
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="https://www.fezhu.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博弈论</title>
+    <link href="https://www.fezhu.top/2020/09/24/boyilun/"/>
+    <id>https://www.fezhu.top/2020/09/24/boyilun/</id>
+    <published>2020-09-24T14:01:26.000Z</published>
+    <updated>2020-12-22T00:36:52.832Z</updated>
+    
+    <summary type="html">
+    
+      总结一下博弈论的内容
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="博弈论" scheme="https://www.fezhu.top/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Millionaire Madness</title>
+    <link href="https://www.fezhu.top/2020/09/11/Millionaire-Madness/"/>
+    <id>https://www.fezhu.top/2020/09/11/Millionaire-Madness/</id>
+    <published>2020-09-11T07:26:43.000Z</published>
+    <updated>2020-12-22T00:36:52.829Z</updated>
+    
+    <summary type="html">
+    
+      优先队列加BFS
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="BFS" scheme="https://www.fezhu.top/tags/BFS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python_arrange</title>
+    <link href="https://www.fezhu.top/2020/09/03/python-arrange/"/>
+    <id>https://www.fezhu.top/2020/09/03/python-arrange/</id>
+    <published>2020-09-03T10:43:13.000Z</published>
+    <updated>2020-12-22T00:36:52.844Z</updated>
+    
+    <summary type="html">
+    
+      用OS模块写了一个整理文件夹内容的程序
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://www.fezhu.top/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何跳过某网盘限速</title>
+    <link href="https://www.fezhu.top/2020/08/17/wangpanxiansu/"/>
+    <id>https://www.fezhu.top/2020/08/17/wangpanxiansu/</id>
+    <published>2020-08-17T08:40:45.000Z</published>
+    <updated>2020-12-22T00:36:52.848Z</updated>
+    
+    <summary type="html">
+    
+      优雅跳过某某网盘限速，高速下载文件
+    
+    </summary>
+    
+      <category term="技术" scheme="https://www.fezhu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="网盘限速" scheme="https://www.fezhu.top/tags/%E7%BD%91%E7%9B%98%E9%99%90%E9%80%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈哈希</title>
+    <link href="https://www.fezhu.top/2020/08/16/qiantanhaxi/"/>
+    <id>https://www.fezhu.top/2020/08/16/qiantanhaxi/</id>
+    <published>2020-08-16T13:14:19.000Z</published>
+    <updated>2020-12-22T00:36:52.844Z</updated>
+    
+    <summary type="html">
+    
+      快速比较字符串是否相等的一种算法
+    
+    </summary>
+    
+      <category term="算法" scheme="https://www.fezhu.top/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="集训" scheme="https://www.fezhu.top/tags/%E9%9B%86%E8%AE%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>积分赛5</title>
+    <link href="https://www.fezhu.top/2020/08/15/jifen5/"/>
+    <id>https://www.fezhu.top/2020/08/15/jifen5/</id>
+    <published>2020-08-15T14:19:23.000Z</published>
+    <updated>2020-12-22T00:36:52.838Z</updated>
+    
+    <summary type="html">
+    
+      最后一次个人积分赛了，集训进入尾声，快要开学了
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="集训" scheme="https://www.fezhu.top/tags/%E9%9B%86%E8%AE%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>积分赛4</title>
+    <link href="https://www.fezhu.top/2020/08/10/jifen4/"/>
+    <id>https://www.fezhu.top/2020/08/10/jifen4/</id>
+    <published>2020-08-10T14:53:10.000Z</published>
+    <updated>2020-12-22T00:36:52.838Z</updated>
+    
+    <summary type="html">
+    
+      积分赛4
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="集训" scheme="https://www.fezhu.top/tags/%E9%9B%86%E8%AE%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最短路径记录问题</title>
+    <link href="https://www.fezhu.top/2020/08/06/zuiduanlujingjilu/"/>
+    <id>https://www.fezhu.top/2020/08/06/zuiduanlujingjilu/</id>
+    <published>2020-08-06T13:05:42.000Z</published>
+    <updated>2020-12-22T00:36:52.853Z</updated>
+    
+    <summary type="html">
+    
+      迪杰斯特拉算法记录路径问题
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="图论" scheme="https://www.fezhu.top/tags/%E5%9B%BE%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dfs记忆化搜索</title>
+    <link href="https://www.fezhu.top/2020/08/05/dfsjiyihuasousuo/"/>
+    <id>https://www.fezhu.top/2020/08/05/dfsjiyihuasousuo/</id>
+    <published>2020-08-05T03:08:45.000Z</published>
+    <updated>2020-12-22T00:36:52.834Z</updated>
+    
+    <summary type="html">
+    
+      dfs记忆化搜索训练，又是一个debug特别难，而且很抽象的算法
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="集训" scheme="https://www.fezhu.top/tags/%E9%9B%86%E8%AE%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线性dp</title>
+    <link href="https://www.fezhu.top/2020/08/03/xianxingdp/"/>
+    <id>https://www.fezhu.top/2020/08/03/xianxingdp/</id>
+    <published>2020-08-03T03:19:11.000Z</published>
+    <updated>2020-12-22T00:36:52.849Z</updated>
+    
+    <summary type="html">
+    
+      这里记录以后碰到的典型dp问题
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="dp" scheme="https://www.fezhu.top/tags/dp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>积分赛3</title>
+    <link href="https://www.fezhu.top/2020/08/02/jifen3/"/>
+    <id>https://www.fezhu.top/2020/08/02/jifen3/</id>
+    <published>2020-08-02T12:42:26.000Z</published>
+    <updated>2020-12-22T00:36:52.838Z</updated>
+    
+    <summary type="html">
+    
+      自闭的积分赛
+    
+    </summary>
+    
+      <category term="题目" scheme="https://www.fezhu.top/categories/%E9%A2%98%E7%9B%AE/"/>
+    
+    
+      <category term="集训" scheme="https://www.fezhu.top/tags/%E9%9B%86%E8%AE%AD/"/>
+    
+  </entry>
+  
+</feed>

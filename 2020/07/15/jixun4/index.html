@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">贪心与二分 | Uncle_ac blog</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <script data-ad-client="ca-pub-2151050701919663" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/drew233/css/font.min.css" media="all">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/drew233/css/matery.min.css">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheets" type="text/css" href="/css/newtag.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/guostyle.min.css" type="text/css" media="all">
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Uncleacc";
+  mashiro_option.author_name = "Uncleacc";
+  mashiro_option.site_url = "https://uncleacc.github.io";
+  mashiro_option.v_appId = "pa33t4XrdRebMF7X622SEIws-MdYXbMMI";
+  mashiro_option.v_appKey = "x1GdhrTESDw2gSwPcPqiU4UX";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/1.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/2.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/3.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/4.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/7.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/0.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/1.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/2.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/4.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/6.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:rgb(241, 187, 8)}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:rgb(241, 35, 8)}::-webkit-scrollbar-thumb{background:rgb(195, 8, 241)}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:rgb(241, 132, 8)}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:rgb(195, 8, 241)}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+    <div class="scrollbar" id="bar">
+    </div>
+    <a href="#" class="cd-top faa-float animated"></a>
+    <section id="main-container">
+        <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a target="_blank" rel="noopener" href="https://uncleacc.github.io">
+          <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>真正的大师永远怀着一颗学徒的心</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/wechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/wechat.jpg">
+                  </div>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://wpa.qq.com/msgrd?v=3&amp;uin=601162956&amp;site=qq&amp;menu=yes" target="_blank" class="social-github" title="qq">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/qq.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://blog.csdn.net/AGNING" target="_blank" class="social-github" title="csdn">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/csdn.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://space.bilibili.com/525424930" target="_blank" class="social-github" title="bilibili">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/bilibili.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://github.com/uncleacc" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+            <div id="page" class="site wrapper">
+                <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono"></span>
+            <span class="shironeko">Uncleacc</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E7%AE%97%E6%B3%95/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          算法
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%A2%98%E7%9B%AE/">
+                          <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                          题目
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%AE%B0%E5%BD%95/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          记录
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/analytics/">
+                          <i class="fa fa-line-chart" aria-hidden="true"></i>
+                          统计
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/shuoshuo/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-commenting-o fa-commenting" aria-hidden="true"></i>
+                    说说
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-tag" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          对话
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/custom/">
+                          <i class="fa fa-address-book" aria-hidden="true"></i>
+                          我
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+                <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/66.webp);" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/66.webp">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      贪心与二分</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="">uncleacc</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-7-15<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <!-- 安装插件npm install hexo-wordcount --save -->
+        <span class="post-count">4.2k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">22分</span>
+      </span>
+    </span>
+</div>
+
+        
+        <!-- 添加完成 -->    
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <blockquote>
+<p>被虐惨了，各种调试与超时或者看不懂题🐷</p>
+</blockquote>
+<h2 id="Strange-fuction">Strange fuction</h2>
+<blockquote>
+<p>Now, here is a fuction:<br>
+F(x) = 6 * x<sup>7+8*x</sup>6+7<em>x<sup>3+5*x</sup>2-y</em>x (0 &lt;= x &lt;=100)<br>
+Can you find the minimum value when x is between 0 and 100.</p>
+<p><strong>Input</strong></p>
+<p>The first line of the input contains an integer T(1&lt;=T&lt;=100) which means the number of test cases. Then T lines follow, each line has only one real numbers Y.(0 &lt; Y &lt;1e10)</p>
+<p><strong>Output</strong></p>
+<p>Just the minimum value (accurate up to 4 decimal places),when x is between 0 and 100.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>2
+100
+200
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>-74.4291
+-178.8534
+</code></pre>
+</blockquote>
+<h3 id="分析">分析</h3>
+<p>做了这道题我终于相信ACM和高中数学紧密相连，因为是打代码，我就没往导数的方向去想，一搜题解看到导数俩字我瞬间醍醐灌顶，行如流水代码出来🐶</p>
+<h3 id="CODE">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int MAXN = 1e5;
+const int MOD = 1e9;
+const double eps = 1e-6;
+double y;
+double dao(double x)&#123;
+	return 42*pow(x,6.0)+48*pow(x,5.0)+21*pow(x,2.0)+10*x-y;
+&#125;
+double f(double x)&#123;
+	return 6*pow(x,7)+8*pow(x,6)+7*pow(x,3)+5*pow(x,2)-x*y;
+&#125;
+int main()&#123;
+	int t;
+	scanf(&quot;%d&quot;,&amp;t);
+	while(t--)&#123;
+		scanf(&quot;%lf&quot;,&amp;y);
+		double l,r,mid;
+		l=0; r=100;
+		while(r-l&gt;=eps)&#123;
+			mid=(l+r)/2;
+			if(dao(mid)&gt;0) r=mid;
+			else if(dao(mid)&lt;0) l=mid;
+			else break;
+		&#125;
+		printf(&quot;%.4f\n&quot;,f(mid));
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="Best-Cow-Line">Best Cow Line</h2>
+<p>读不懂题的一道题，其实很简单，但是我就是没读懂意思，它的顺序更换规则只能改变第一个和最后一个，其实是一道比较水的题目，我要吐槽的是刚开始我想锻炼一下数据结构，用双端队列来做了，还用了迭代器，最后交后直接给我来个编译错误，我*，喵的，我**写了这么久你t喵的不能使用迭代器，k！最后还是换成了字符数组来做</p>
+<h3 id="CODE-v2">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 1e4+100;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+int main()&#123;
+	ios;
+	int n; cin&gt;&gt;n;
+	char ch[n+10];
+	string ans;
+	for(int i=1;i&lt;=n;i++) cin&gt;&gt;ch[i];
+	int p1=1,p2=n;
+	while(p2&gt;=p1)&#123;
+		if(ch[p1]&lt;ch[p2])&#123;
+			ans+=ch[p1];
+			p1++;
+		&#125;
+		if(ch[p1]&gt;ch[p2])&#123;
+			ans+=ch[p2];
+			p2--;
+		&#125;
+		if(ch[p1]==ch[p2])&#123;
+			int it1=p1,it2=p2;
+			while(ch[it1]==ch[it2]&amp;&amp;it2&gt;it1)&#123;
+				it1++; it2--;
+			&#125;
+			if(ch[it1]&gt;=ch[it2])&#123;
+				ans+=ch[p2];
+				p2--;
+			&#125;
+			if(ch[it1]&lt;ch[it2])&#123;
+				ans+=ch[p1];
+				p1++;
+			&#125;
+		&#125;
+	&#125;
+	int cnt=1,len=ans.size();
+	for(int i=0;i&lt;len;i++)&#123;
+		if(cnt%80==0) cout&lt;&lt;ans[i]&lt;&lt;'\n';
+		else cout&lt;&lt;ans[i];
+		cnt++;
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="The-Frog’s-Games">The Frog’s Games</h2>
+<blockquote>
+<p>The annual Games in frogs’ kingdom started again. The most famous game is the Ironfrog Triathlon. One test in the Ironfrog Triathlon is jumping. This project requires the frog athletes to jump over the river. The width of the river is L (1&lt;= L &lt;= 1000000000). There are n (0&lt;= n &lt;= 500000) stones lined up in a straight line from one side to the other side of the river. The frogs can only jump through the river, but they can land on the stones. If they fall into the river, they<br>
+are out. The frogs was asked to jump at most m (1&lt;= m &lt;= n+1) times. Now the frogs want to know if they want to jump across the river, at least what ability should they have. (That is the frog’s longest jump distance).</p>
+<p><strong>Input</strong></p>
+<p>The input contains several cases. The first line of each case contains three positive integer L, n, and m.<br>
+Then n lines follow. Each stands for the distance from the starting banks to the nth stone, two stone appear in one place is impossible.</p>
+<p><strong>Output</strong></p>
+<p>For each case, output a integer standing for the frog’s ability at least they should have.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>6 1 2
+2
+25 3 3
+11 
+2
+18
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>4
+11
+</code></pre>
+</blockquote>
+<h3 id="分析-v2">分析</h3>
+<p>青蛙过河，给你河宽，石头数以及每一个石头离河岸的距离，跳的步数，问青蛙每次最少跳几米才能不掉进河里且安全过岸，典型二分，大致估算复杂度NlogN，不会超时，这里难的其实是怎么判断当前检测的距离是否满足，说白了就是青蛙必须跳到最远能跳到的石头，这样才能保证可能能跳到对面，怎么解决跳到最远能跳到的石头呢？可以用一个pre记录上一次所在的石头位置，然后枚举石头距离，如果当前石头距离上一次位置距离小于等于你的最远弹跳距离的话，就把当前石头位置往后移一个，那么最后出来循环当前石头距离上次驻留位置距离一定是大于最远弹跳距离的，再把石头位置往前移动一个就达到了最远能跳到的距离，<code>二分检查经常碰到这种情况，一定要知道怎么解决</code>。</p>
+<h3 id="CODE-v3">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 5e5+100;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+int d[N];
+int L,n,m;
+bool check(int mid)&#123;
+	int pos=0,pre=0;
+	for(int i=1;i&lt;=m;i++)&#123;
+		while(pos&lt;=n+1&amp;&amp;d[pos]-d[pre]&lt;=mid) pos++;
+		pos--;
+		pre=pos;
+	&#125;
+	if(pos&gt;=n+1) return 1;
+	else return 0;
+&#125;
+int main()&#123;
+	ios;
+	while(cin&gt;&gt;L&gt;&gt;n&gt;&gt;m)&#123;
+		memset(d,0,sizeof d);
+		for(int i=1;i&lt;=n;i++) cin&gt;&gt;d[i];
+		d[n+1]=L;
+		sort(d+1,d+1+n);
+		int l=0,r=L,mid,ans;
+		while(r&gt;=l)&#123;
+			mid=(l+r)&gt;&gt;1;
+			if(check(mid))&#123;
+				ans=mid;
+				r=mid-1;
+			&#125; 
+			else l=mid+1;
+		&#125;
+		cout&lt;&lt;ans&lt;&lt;'\n';
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="湫湫系列故事——消灭兔子">湫湫系列故事——消灭兔子</h2>
+<blockquote>
+<p>湫湫减肥<br>
+　　越减越肥！</p>
+<p>最近，减肥失败的湫湫为发泄心中郁闷，在玩一个消灭免子的游戏。<br>
+　　游戏规则很简单，用箭杀死免子即可。<br>
+　　箭是一种消耗品，已知有M种不同类型的箭可以选择，并且每种箭都会对兔子造成伤害，对应的伤害值分别为Di（1 &lt;= i &lt;= M），每种箭需要一定的QQ币购买。<br>
+　　假设每种箭只能使用一次，每只免子也只能被射一次，请计算要消灭地图上的所有兔子最少需要的QQ币。</p>
+<p><strong>Input</strong></p>
+<p>输入数据有多组，每组数据有四行；<br>
+第一行有两个整数N，M（1 &lt;= N, M &lt;= 100000），分别表示兔子的个数和箭的种类；<br>
+第二行有N个正整数，分别表示兔子的血量Bi（1 &lt;= i &lt;= N）；<br>
+第三行有M个正整数，表示每把箭所能造成的伤害值Di（1 &lt;= i &lt;= M）；<br>
+第四行有M个正整数，表示每把箭需要花费的QQ币Pi（1 &lt;= i &lt;= M）。</p>
+<p>特别说明：<br>
+1、当箭的伤害值大于等于兔子的血量时，就能将兔子杀死；<br>
+2、血量Bi，箭的伤害值Di，箭的价格Pi，均小于等于100000。</p>
+<p><strong>Output</strong></p>
+<p>如果不能杀死所有兔子，请输出”No”，否则，请输出最少的QQ币数，每组输出一行。</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>3 3
+1 2 3
+2 3 4
+1 2 3
+3 4
+1 2 3
+1 2 3 4
+1 2 3 1
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>6
+4
+</code></pre>
+</blockquote>
+<h3 id="分析-v3">分析</h3>
+<p>做这道题就只需要知道一点，杀一只兔子，我们应该选择伤害足够的箭里面消耗最小的，我们把兔子按照血量从大到小排序，箭按伤害从大到小排序，然后枚举兔子血量，去箭里面找到能够杀死这只兔子的所有箭，去里面找到耗费最小的，然后累加耗费就行了，做着做着就发现这用到了优先队列<s>不用优先队列还超时</s>，优先队列用来装每次枚举兔子时可以杀死这只兔子的所有箭，然后给优先队列进行一次比较运算符重载就行了</p>
+<h3 id="CODE-v4">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 5e5+100;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+int d[N];
+int L,n,m;
+bool check(int mid)&#123;
+	int pos=0,pre=0;
+	for(int i=1;i&lt;=m;i++)&#123;
+		while(pos&lt;=n+1&amp;&amp;d[pos]-d[pre]&lt;=mid) pos++;
+		pos--;
+		pre=pos;
+	&#125;
+	if(pos&gt;=n+1) return 1;
+	else return 0;
+&#125;
+int main()&#123;
+	ios;
+	while(cin&gt;&gt;L&gt;&gt;n&gt;&gt;m)&#123;
+		memset(d,0,sizeof d);
+		for(int i=1;i&lt;=n;i++) cin&gt;&gt;d[i];
+		d[n+1]=L;
+		sort(d+1,d+1+n);
+		int l=0,r=L,mid,ans;
+		while(r&gt;=l)&#123;
+			mid=(l+r)&gt;&gt;1;
+			if(check(mid))&#123;
+				ans=mid;
+				r=mid-1;
+			&#125; 
+			else l=mid+1;
+		&#125;
+		cout&lt;&lt;ans&lt;&lt;'\n';
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="Can-you-find-it">Can you find it?</h2>
+<blockquote>
+<p>Give you three sequences of numbers A, B, C, then we give you a number X. Now you need to calculate if you can find the three numbers Ai, Bj, Ck, which satisfy the formula Ai+Bj+Ck = X.</p>
+<p><strong>Input</strong></p>
+<p>There are many cases. Every data case is described as followed: In the first line there are three integers L, N, M, in the second line there are L integers represent the sequence A, in the third line there are N integers represent the sequences B, in the forth line there are M integers represent the sequence C. In the fifth line there is an integer S represents there are S integers X to be calculated. 1&lt;=L, N, M&lt;=500, 1&lt;=S&lt;=1000. all the integers are 32-integers.</p>
+<p><strong>Output</strong></p>
+<p>For each case, firstly you have to print the case number as the form “Case d:”, then for the S queries, you calculate if the formula can be satisfied or not. If satisfied, you print “YES”, otherwise print “NO”.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>3 3 3
+1 2 3
+1 2 3
+1 2 3
+3
+1
+4
+10
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>Case 1:
+NO
+YES
+NO
+</code></pre>
+</blockquote>
+<h2 id="分析-v4">分析</h2>
+<p>题意比较好理解，给你三组序列数从这三组序列里随便挑三个数求满足式子所有做法数量，很好想到的是加俩序列，然后在第三组序列里二分找K-a[i]-b[i]，高高兴兴写好代码，交上去超时了。。。后来想了很久感觉没办法再优化了，没想到正解是二分K-c[i]，用一个新数组存ab数组的组合，再在新数组里面二分找K-c[i]，这样好处就是二分的数组变长了，复杂度虽然还是nlogn，但是n却变小了（logn虽然变大了，但是因为是log级别几乎没影响）。真是巧妙</p>
+<h3 id="CODE-v5">CODE</h3>
+<pre><code class="language-c">#include&lt;iostream&gt;
+#include&lt;algorithm&gt; 
+#include&lt;string&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+typedef long long ll;
+const int MAXN=1e3+100;
+int a[MAXN],b[MAXN],c[MAXN],d[MAXN],x[250010];
+int main()
+&#123;
+ 	int L,N,M,kase=0;
+ 	while(cin&gt;&gt;L&gt;&gt;N&gt;&gt;M)&#123;
+ 		int cnt=0;
+	 	for(int i=1;i&lt;=L;i++) cin&gt;&gt;a[i];
+		for(int i=1;i&lt;=N;i++) cin&gt;&gt;b[i];
+		for(int i=1;i&lt;=M;i++) cin&gt;&gt;c[i];
+		int S; cin&gt;&gt;S;
+		for(int i=1;i&lt;=S;i++) cin&gt;&gt;d[i];
+		for(int i=1;i&lt;=L;i++)&#123;
+			for(int j=1;j&lt;=N;j++)&#123;
+				x[++cnt]=a[i]+b[j];
+			&#125;
+		&#125;
+		sort(x+1,x+1+cnt);
+		cout&lt;&lt;&quot;Case &quot;&lt;&lt;++kase&lt;&lt;&quot;:&quot;&lt;&lt;'\n';
+		for(int k=1;k&lt;=S;k++)&#123;
+			int flag=0;
+			for(int i=1;i&lt;=M;i++)&#123;
+				int temp=d[k]-c[i];
+//				cout&lt;&lt;temp&lt;&lt;endl;
+				int id=lower_bound(x+1,x+1+cnt,temp)-x;
+				if(id!=cnt+1&amp;&amp;x[id]==temp)&#123;
+					flag=1;
+					break;
+				&#125;
+			&#125;
+			if(flag) cout&lt;&lt;&quot;YES&quot;&lt;&lt;'\n';
+			else cout&lt;&lt;&quot;NO&quot;&lt;&lt;'\n'; 
+		&#125;
+	&#125;
+ 	return 0;
+&#125; 
+</code></pre>
+<h2 id="Aggressive-cows">Aggressive cows</h2>
+<blockquote>
+<p>Farmer John has built a new long barn, with N (2 &lt;= N &lt;= 100,000) stalls. The stalls are located along a straight line at positions x1,…,xN (0 &lt;= xi &lt;= 1,000,000,000).</p>
+<p>His C (2 &lt;= C &lt;= N) cows don’t like this barn layout and become aggressive towards each other once put into a stall. To prevent the cows from hurting each other, FJ want to assign the cows to the stalls, such that the minimum distance between any two of them is as large as possible. What is the largest minimum distance?</p>
+<p><strong>Input</strong></p>
+<p>* Line 1: Two space-separated integers: N and C</p>
+<p>* Lines 2…N+1: Line i+1 contains an integer stall location, xi</p>
+<p><strong>Output</strong></p>
+<p>* Line 1: One integer: the largest minimum distance</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>5 3
+1
+2
+8
+4
+9
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>3
+</code></pre>
+<p><strong>Hint</strong></p>
+<p>OUTPUT DETAILS:</p>
+<p>FJ can put his 3 cows in the stalls at positions 1, 4 and 8, resulting in a minimum distance of 3.</p>
+<p>Huge input data,scanf is recommended.</p>
+</blockquote>
+<h3 id="分析-v5">分析</h3>
+<p>最简单的一道二分题，却放在了最后一题。。。</p>
+<h3 id="CODE-v6">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int MAXN = 1e5+100;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+int N,C;
+int v[MAXN];
+int check(int mid)&#123;
+	int pre=1,cnt=1;
+	for(int i=2;i&lt;=N;i++)&#123;
+		if(v[i]-v[pre]&gt;=mid)&#123;
+			pre=i;
+			cnt++;
+		&#125;
+		if(cnt==C) return 1;
+	&#125;
+	return 0;
+&#125;
+int main()&#123;
+	ios;
+	cin&gt;&gt;N&gt;&gt;C;
+	for(int i=1;i&lt;=N;i++) cin&gt;&gt;v[i];
+	sort(v+1,v+1+N);
+	int l=0,r=v[N],mid,ans;
+	while(r&gt;=l)&#123;
+		mid=(l+r)&gt;&gt;1;
+		if(check(mid))&#123;
+			ans=mid;
+			l=mid+1;
+		&#125;
+		else r=mid-1;
+	&#125;
+	cout&lt;&lt;ans&lt;&lt;'\n';
+	return 0;
+&#125;
+</code></pre>
+<h2 id="Radar-Installation">Radar Installation</h2>
+<blockquote>
+<p>Assume the coasting is an infinite straight line. Land is in one side of coasting, sea in the other. Each small island is a point locating in the sea side. And any radar installation, locating on the coasting, can only cover d distance, so an island in the sea can be covered by a radius installation, if the distance between them is at most d.</p>
+<p>We use Cartesian coordinate system, defining the coasting is the x-axis. The sea side is above x-axis, and the land side below. Given the position of each island in the sea, and given the distance of the coverage of the radar installation, your task is to write a program to find the minimal number of radar installations to cover all the islands. Note that the position of an island is represented by its x-y coordinates.</p>
+</blockquote>
+<a target="_blank" rel="noopener" href="https://vj.z180.cn/f6ffe515205096387436c13c7449b0ed?v=1594806647" data-fancybox="images" data-caption="主人没有描述我哦~"><img src="https://vj.z180.cn/f6ffe515205096387436c13c7449b0ed?v=1594806647" /></a>
+<blockquote>
+<p><strong>Input</strong></p>
+<p>The input consists of several test cases. The first line of each case contains two integers n (1&lt;=n&lt;=1000) and d, where n is the number of islands in the sea and d is the distance of coverage of the radar installation. This is followed by n lines each containing two integers representing the coordinate of the position of each island. Then a blank line follows to separate the cases.</p>
+<p>The input is terminated by a line containing pair of zeros</p>
+<p><strong>Output</strong></p>
+<p>For each test case output one line consisting of the test case number followed by the minimal number of radar installations needed. “-1” installation means no solution for that case.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>3 2
+1 2
+-3 1
+2 1
+
+1 2
+0 2
+
+0 0
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code class="language-c">Case 1: 2
+Case 2: 1
+</code></pre>
+</blockquote>
+<p>膜拜岑大佬</p>
+<h3 id="CODE-v7">CODE</h3>
+<pre><code class="language-c">#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+typedef long long ll;
+const int maxn=1010;
+int n,d,maxy,cnt,sum;
+double lastx,newx;
+struct node &#123; 
+	int x,y; 
+&#125;nod[maxn]; 
+bool cmp(node a,node b)&#123; //因为习惯是从左往右看，因此把横坐标小的放到前面（当然你想从右往左 看也可以，但是后面就需要改动一下，把能让点在边界上的左圆心作为推断的圆心就可以）  
+	if(a.x!=b.x) return a.x&lt;b.x;
+	else return a.y&gt;b.y;//这个让纵坐标小的在前面也可以，不写也可以。不写的话就需要把上 一条的if条件去掉，不然会RE。让不让纵坐标排序都是习惯问题，在此题中不是关键。 
+&#125;
+int main() &#123; 
+	cnt=1; 
+	while(cin&gt;&gt;n&gt;&gt;d)&#123; //有n个岛屿，雷达的半径为d 
+		if(n==0 &amp;&amp; d==0) break; 
+		maxy=-1; sum=1;
+		for(int i=0;i&lt;n;i++)&#123; 
+			cin&gt;&gt;nod[i].x&gt;&gt;nod[i].y; 
+			if(nod[i].y&gt;maxy) maxy=nod[i].y;
+		&#125;
+		sort(nod,nod+n,cmp);
+		cout&lt;&lt;&quot;Case &quot;&lt;&lt;cnt&lt;&lt;&quot;: &quot;;
+		cnt++;
+		if(maxy&gt;d) //如果有岛屿到x轴的距离比d大，那么一定不能让所有岛屿都在雷达范围中
+			cout&lt;&lt;&quot;-1\n&quot;;
+		else&#123;
+			lastx=nod[0].x+sqrt(d*d-nod[0].y*nod[0].y); //老圆心的横坐标 
+			for(int i=1;i&lt;n;i++)&#123;
+				newx=nod[i].x+sqrt(d*d-nod[i].y*nod[i].y); //新圆心的横坐标 
+				if(newx&lt;lastx) //新圆心横坐标在老圆心横坐标左边 
+					lastx=newx; //优化上一个圆的圆心坐标 
+				else if(sqrt((nod[i].x-lastx)*(nod[i].x- lastx)+nod[i].y*nod[i].y)&gt;d)&#123;//如果新圆心在老圆心右边，而且该岛屿到老圆心的距离比d还大，说 明需要增加一个雷达 
+					lastx=newx; //更新老圆心的坐标 
+					sum++; //雷达个数增加 
+				&#125; 
+			&#125;
+			cout&lt;&lt;sum&lt;&lt;endl; 
+		&#125; 
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/WeChanSQ.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/07/21/juzhenkuaisumi/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/67.webp" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/67.webp">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                浅谈矩阵快速幂</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/07/14/jixun3/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/65.webp" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/65.webp">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                集训前缀和与差分</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "pa33t4XrdRebMF7X622SEIws-MdYXbMMI",
+        appKey: "x1GdhrTESDw2gSwPcPqiU4UX",
+        path: window.location.pathname,
+        placeholder: "绿叶衬托了红花，白云渲染了蓝天，而你温柔了我的心，留下你的评论，一起加入讨论吧 ...",
+        avatar: 'wavatar',
+        notify: true,
+        verify: false,
+        pageSize: 10
+      })
+  }
+  // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+  // 参考https://immmmm.com/valine-diy,用到jQuery
+  $(document).ready(function(){
+      //$('.vemoji-btn').text('😀');
+      $("#vcomments").on('click', 'span.vat',function(){
+          $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+          $('textarea#veditor').focus();
+      })
+  })
+</script>
+
+  
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg" itemprop="image" alt="uncleacc" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author">uncleacc</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+
+            </div>
+            <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+            <footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020 Uncleacc</p>
+    </div>
+    <!-- <i class="fa fa-fire" aria-hidden="true"></i> -->
+    <span style="color: #b9b9b9;padding-left: 20px;">
+      <i class="fa fa-clock-o" aria-hidden="true"></i>
+      <span id="time" align="center">载入时间中...</span>
+      <script>
+        var now = new Date(); 
+        function createtime() { 
+          var grt= new Date("2020-03-29 23:20:00");//在此处修改你的建站时间
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("time").innerHTML = "小站已经苟活 "+ dnum +" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";      
+       } 
+       setInterval("createtime()",250);
+      </script>
+    <!-- 结束 -->
+    <div id="binft"></div>
+  <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a></a>
+        </span>
+      </p>
+    </div>
+    <p></p>
+  <div><a href="http://www.beian.miit.gov.cn/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@v3.2.8/butterfly/img/icp.png"><span>豫 ICP 备 20021246 号</span></a></div>
+  <br>
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://hexo.io/" target="_blank" title="由 Hexo 强力驱动">
+    <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hexo</span></a>
+  </div>
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://github.com/" target="_blank" title="静态网页托管于Github和Coding">
+    <span class="badge-subject">Hosted</span><span class="badge-value bg-red">Github&Coding</span></a>
+  </div>
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://www.aliyun.com/" target="_blank" title="阿里云提供域名相关服务">
+    <span class="badge-subject">DNS</span><span class="badge-value bg-red">Aliyun</span></a>
+  </div>
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://www.jsdelivr.com/" target="_blank" title="jsDelivr 提供 CDN 加速服务">
+    <span class="badge-subject">CDN</span><span class="badge-value bg-brightgreen">jsDelivr</span></a>
+  </div>
+  <div class="github-badge">
+    <span class="badge-subject">UV</span><span class="badge-value bg-orange" id="busuanzi_value_site_uv" target="_blank" title="本站访客量"></span>
+  </div>
+  <div class="github-badge">
+    <span class="badge-subject">PV</span><span class="badge-value bg-orange" id="busuanzi_value_site_pv" target="_blank" title="本站浏览量"></span>
+  </div>
+  <div class="github-badge">
+    <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet post-count" target="_blank" title="全站字数">125.9k</span>
+  </div>
+  <img src="https://cdn.jsdelivr.net/gh/drew233/cdn//20191003172815.webp" style="position: relative; top: 80px;" alt="">
+
+  </div><!-- .site-info -->
+  <!--壁纸切换-->
+  <div class="skin-menu no-select" id="mainskin"  style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+    <div class="font-family-controls row-container">
+        <button type="button" class="control-btn-serif selected" data-mode="serif" onclick="mashiro_global.font_control.change_font()">Serif</button>
+        <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+    </div>
+  </div>   
+  <canvas id="night-mode-cover"></canvas> 
+  <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> <font color="black" size=4> 切换壁纸 | SCHEME TOOL </font>
+      &nbsp;<i class="iconfont icon-gear inline-block rotating"></i> </span></div>
+  </div>
+  <!-- 结束 -->
+</footer>
+
+<!-- fancybox大图查看 需jq -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!-- 高版本1.4.5的Valine -->
+<script src='/js/valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.3/","name":"The%20Pet%20Girl%20of%20Sakurasou.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.3/","name":"The%20Pet%20Girl%20of%20Sakurasou.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+            <div class="openNav no-select" style="height: 50px;">
+                <div class="iconflat no-select" style="width: 50px; height: 50px;">
+                    <div class="icon"></div>
+                </div>
+                <div class="site-branding search-form-submit">
+                    <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+                </div>
+            </div>
+    </section>
+    <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Uncleacc</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/uncleacc" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=601162956&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E7%AE%97%E6%B3%95/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  算法
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%A2%98%E7%9B%AE/">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                  题目
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%AE%B0%E5%BD%95/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  记录
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/analytics/">
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  统计
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/shuoshuo/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-commenting-o fa-commenting" aria-hidden="true"></i>
+            说说
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-tag" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  对话
+                </a>
+              </li>
+            
+              <li>
+                <a href="/custom/">
+                  <i class="fa fa-address-book" aria-hidden="true"></i>
+                  我
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+            <!-- 动态线条 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script> -->
+            <!-- 彩带 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script> -->
+            <!-- 樱花飘落 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script> -->
+            <!-- 伴娘 -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+            <!-- 这条在sakura中已有，可不添加 -->
+            <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+            <!-- 预加载 -->
+            <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+            <!-- 点击出现社会主义彩色文字 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script> -->
+            <!-- 点击出现爱心 -->   
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script> -->  
+            <link rel="stylesheet" href="/css/APlayer.min.css">
+<script src="/js/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-id="459792285" data-server="netease"
+  data-type="playlist" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="/js/music.js"></script>
+<!-- 添加aplayer播放器 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>

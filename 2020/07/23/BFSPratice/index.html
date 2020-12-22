@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">BFS练习 | Uncle_ac blog</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <script data-ad-client="ca-pub-2151050701919663" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/drew233/css/font.min.css" media="all">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/drew233/css/matery.min.css">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheets" type="text/css" href="/css/newtag.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/guostyle.min.css" type="text/css" media="all">
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "Uncleacc";
+  mashiro_option.author_name = "Uncleacc";
+  mashiro_option.site_url = "https://uncleacc.github.io";
+  mashiro_option.v_appId = "pa33t4XrdRebMF7X622SEIws-MdYXbMMI";
+  mashiro_option.v_appKey = "x1GdhrTESDw2gSwPcPqiU4UX";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/1.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/2.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/3.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/4.webp,https://cdn.jsdelivr.net/gh/uncleacc/Img/cover/7.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/0.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/1.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/2.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/4.webp,https://cdn.jsdelivr.net/gh/uncleacc/CDN/img/cover/6.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:rgb(241, 187, 8)}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:rgb(241, 35, 8)}::-webkit-scrollbar-thumb{background:rgb(195, 8, 241)}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:rgb(241, 132, 8)}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:rgb(195, 8, 241)}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+    <div class="scrollbar" id="bar">
+    </div>
+    <a href="#" class="cd-top faa-float animated"></a>
+    <section id="main-container">
+        <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a target="_blank" rel="noopener" href="https://uncleacc.github.io">
+          <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>真正的大师永远怀着一颗学徒的心</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/wechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/wechat.jpg">
+                  </div>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://wpa.qq.com/msgrd?v=3&amp;uin=601162956&amp;site=qq&amp;menu=yes" target="_blank" class="social-github" title="qq">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/qq.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://blog.csdn.net/AGNING" target="_blank" class="social-github" title="csdn">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/csdn.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://space.bilibili.com/525424930" target="_blank" class="social-github" title="bilibili">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/bilibili.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="http://github.com/uncleacc" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+            <div id="page" class="site wrapper">
+                <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono"></span>
+            <span class="shironeko">Uncleacc</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/%E7%AE%97%E6%B3%95/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          算法
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E9%A2%98%E7%9B%AE/">
+                          <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                          题目
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E8%AE%B0%E5%BD%95/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          记录
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                          <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/analytics/">
+                          <i class="fa fa-line-chart" aria-hidden="true"></i>
+                          统计
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/shuoshuo/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-commenting-o fa-commenting" aria-hidden="true"></i>
+                    说说
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-tag" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          对话
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/custom/">
+                          <i class="fa fa-address-book" aria-hidden="true"></i>
+                          我
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+                <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/68.webp);" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/68.webp">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      BFS练习</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="">uncleacc</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2020-7-23<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <!-- 安装插件npm install hexo-wordcount --save -->
+        <span class="post-count">5.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">30分</span>
+      </span>
+    </span>
+</div>
+
+        
+        <!-- 添加完成 -->    
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="A-Red-and-Black">A - Red and Black</h2>
+<blockquote>
+<p>There is a rectangular room, covered with square tiles. Each tile is colored either red or black. A man is standing on a black tile. From a tile, he can move to one of four adjacent tiles. But he can’t move on red tiles, he can move only on black tiles.</p>
+<p>Write a program to count the number of black tiles which he can reach by repeating the moves described above.</p>
+<p><strong>Input</strong></p>
+<p>The input consists of multiple data sets. A data set starts with a line containing two positive integers W and H; W and H are the numbers of tiles in the x- and y- directions, respectively. W and H are not more than 20.</p>
+<p>There are H more lines in the data set, each of which includes W characters. Each character represents the color of a tile as follows.</p>
+<p>‘.’ - a black tile<br>
+‘#’ - a red tile<br>
+‘@’ - a man on a black tile(appears exactly once in a data set)</p>
+<p>The input consists of multiple data sets. A data set starts with a line containing two positive integers W and H; W and H are the numbers of tiles in the x- and y- directions, respectively. W and H are not more than 20.</p>
+<p>There are H more lines in the data set, each of which includes W characters. Each character represents the color of a tile as follows.</p>
+<p>‘.’ - a black tile<br>
+‘#’ - a red tile<br>
+‘@’ - a man on a black tile(appears exactly once in a data set)</p>
+<p><strong>Output</strong></p>
+<p>For each data set, your program should output a line which contains the number of tiles he can reach from the initial tile (including itself).</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>6 9
+....#.
+.....#
+......
+......
+......
+......
+......
+#@...#
+.#..#.
+11 9
+.#.........
+.#.#######.
+.#.#.....#.
+.#.#.###.#.
+.#.#..@#.#.
+.#.#####.#.
+.#.......#.
+.#########.
+...........
+11 6
+..#..#..#..
+..#..#..#..
+..#..#..###
+..#..#..#@.
+..#..#..#..
+..#..#..#..
+7 7
+..#.#..
+..#.#..
+###.###
+...@...
+###.###
+..#.#..
+..#.#..
+0 0
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>45
+59
+6
+13
+</code></pre>
+</blockquote>
+<h3 id="分析">分析</h3>
+<p>模板题，没有任何需要注意的地方</p>
+<h3 id="CODE">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 210;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+struct node&#123;
+	int x,y,step;
+&#125;;
+int n,m;
+char Map[N][N];
+bool vis[N][N];
+int dir[4][2]=&#123;1,0,0,1,-1,0,0,-1&#125;;
+int bfs(int sx,int sy)&#123;
+	int cnt=0;
+	node s=&#123;sx,sy,0&#125;;
+	queue&lt;node&gt; q;
+	q.push(s);
+	vis[sx][sy]=1;
+	while(!q.empty())&#123;
+		node fr=q.front();q.pop();
+		cnt++;
+		for(int i=0;i&lt;4;i++)&#123;
+			node next=&#123;fr.x+dir[i][0],fr.y+dir[i][1],fr.step+1&#125;;
+			if(next.x&lt;1||next.x&gt;n||next.y&gt;m||next.y&lt;1) continue;
+			if(vis[next.x][next.y]||Map[next.x][next.y]=='#') continue;
+			vis[next.x][next.y]=1;
+			q.push(next);
+		&#125;
+	&#125;
+	return cnt;
+&#125;
+int main()&#123;
+	ios;
+	while(cin&gt;&gt;m&gt;&gt;n)&#123;
+		if(m==0&amp;n==0) break;
+		memset(vis,0,sizeof vis);
+		int sx,sy;
+		for(int i=1;i&lt;=n;i++)&#123;
+			for(int j=1;j&lt;=m;j++)&#123;
+				cin&gt;&gt;Map[i][j];
+				if(Map[i][j]=='@')&#123;
+					sx=i;
+					sy=j;
+				&#125;
+			&#125;
+		&#125;
+		int ans=bfs(sx,sy);
+		if(ans!=-1) cout&lt;&lt;ans&lt;&lt;'\n';
+		else cout&lt;&lt;&quot;oop!&quot;&lt;&lt;'\n';
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="B-Rescue">B - Rescue</h2>
+<blockquote>
+<p>Angel was caught by the MOLIGPY! He was put in prison by Moligpy. The prison is described as a N * M (N, M &lt;= 200) matrix. There are WALLs, ROADs, and GUARDs in the prison.</p>
+<p>Angel’s friends want to save Angel. Their task is: approach Angel. We assume that “approach Angel” is to get to the position where Angel stays. When there’s a guard in the grid, we must kill him (or her?) to move into the grid. We assume that we moving up, down, right, left takes us 1 unit time, and killing a guard takes 1 unit time, too. And we are strong enough to kill all the guards.</p>
+<p>You have to calculate the minimal time to approach Angel. (We can move only UP, DOWN, LEFT and RIGHT, to the neighbor grid within bound, of course.)</p>
+<p><strong>Input</strong></p>
+<p>First line contains two integers stand for N and M.</p>
+<p>Then N lines follows, every line has M characters. “.” stands for road, “a” stands for Angel, and “r” stands for each of Angel’s friend.</p>
+<p>Process to the end of the file.</p>
+<p><strong>Output</strong></p>
+<p>For each test case, your program should output a single integer, standing for the minimal time needed. If such a number does no exist, you should output a line containing “Poor ANGEL has to stay in the prison all his life.”</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>7 8
+#.#####.
+#.a#..r.
+#..#x...
+..#..#.#
+#...##..
+.#......
+........
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>13
+</code></pre>
+</blockquote>
+<h3 id="分析-v2">分析</h3>
+<p>小小的升级，在x处步数加一，问到a处最少步数，用优先队列就行了，把步数靠前的放前面</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 210;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+struct node&#123;
+	int x,y,time;
+	bool operator &lt; (const node &amp;o) const &#123;
+		return o.time&lt;time;
+	&#125;
+&#125;;
+int n,m;
+char Map[N][N];
+bool vis[N][N];
+int dir[4][2]=&#123;1,0,0,1,-1,0,0,-1&#125;;
+int bfs(int sx,int sy)&#123;
+	node s=&#123;sx,sy,0&#125;;
+	priority_queue&lt;node&gt; q;
+	q.push(s);
+	vis[sx][sy]=1;
+	while(!q.empty())&#123;
+		node fr=q.top();q.pop();
+		for(int i=0;i&lt;4;i++)&#123;
+			node next=&#123;fr.x+dir[i][0],fr.y+dir[i][1],fr.time+1&#125;;
+			if(next.x&lt;1||next.x&gt;n||next.y&gt;m||next.y&lt;1) continue;
+			if(vis[next.x][next.y]||Map[next.x][next.y]=='#') continue;
+			if(Map[next.x][next.y]=='x') next.time++;
+			if(Map[next.x][next.y]=='a')&#123;
+				return next.time;
+			&#125;
+			vis[next.x][next.y]=1;
+			q.push(next);
+		&#125;
+	&#125;
+	return INF;
+&#125;
+int main()&#123;
+	ios;
+	while(cin&gt;&gt;n&gt;&gt;m)&#123;
+		memset(vis,0,sizeof vis);
+		int sx,sy;
+		for(int i=1;i&lt;=n;i++)&#123;
+			for(int j=1;j&lt;=m;j++)&#123;
+				cin&gt;&gt;Map[i][j];
+				if(Map[i][j]=='r')&#123;
+					sx=i;
+					sy=j;
+				&#125;
+			&#125;
+		&#125;
+		int ans=bfs(sx,sy);
+		if(ans!=INF) cout&lt;&lt;ans&lt;&lt;'\n';
+		else cout&lt;&lt;&quot;Poor ANGEL has to stay in the prison all his life.&quot;&lt;&lt;'\n';
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="C-Battle-City">C - Battle City</h2>
+<blockquote>
+<p>Many of us had played the game “Battle city” in our childhood, and some people (like me) even often play it on computer now.</p>
+<p>What we are discussing is a simple edition of this game. Given a map that consists of empty spaces, rivers, steel walls and brick walls only. Your task is to get a bonus as soon as possible suppose that no enemies will disturb you (See the following picture).</p>
+<p>Your tank can’t move through rivers or walls, but it can destroy brick walls by shooting. A brick wall will be turned into empty spaces when you hit it, however, if your shot hit a steel wall, there will be no damage to the wall. In each of your turns, you can choose to move to a neighboring (4 directions, not 8) empty space, or shoot in one of the four directions without a move. The shot will go ahead in that direction, until it go out of the map or hit a wall. If the shot hits a brick wall, the wall will disappear (i.e., in this turn). Well, given the description of a map, the positions of your tank and the target, how many turns will you take at least to arrive there?</p>
+<p><strong>Input</strong></p>
+<p>The input consists of several test cases. The first line of each test case contains two integers M and N (2 &lt;= M, N &lt;= 300). Each of the following M lines contains N uppercase letters, each of which is one of ‘Y’ (you), ‘T’ (target), ‘S’ (steel wall), ‘B’ (brick wall), ‘R’ (river) and ‘E’ (empty space). Both ‘Y’ and ‘T’ appear only once. A test case of M = N = 0 indicates the end of input, and should not be processed.</p>
+<p><strong>Output</strong></p>
+<p>For each test case, please output the turns you take at least in a separate line. If you can’t arrive at the target, output “-1” instead.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>3 4
+YBEB
+EERE
+SSTE
+0 0
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>8
+</code></pre>
+</blockquote>
+<h3 id="分析-v3">分析</h3>
+<p>经典坦克大战，R(河流)S(钢铁)过不去，B(砖块)可以过去但是需要多花一秒，于是这个和上一道就是一道题了，只不过多了一条河不能过而已</p>
+<h3 id="CODE-v2">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 410;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+struct node&#123;
+	int x,y,time;
+	bool operator &lt; (const node &amp;o) const &#123;
+		return o.time&lt;time;
+	&#125;
+&#125;;
+int n,m;
+char Map[N][N];
+bool vis[N][N];
+int dir[4][2]=&#123;1,0,0,1,-1,0,0,-1&#125;;
+int bfs(int sx,int sy)&#123;
+	node s=&#123;sx,sy,0&#125;;
+	priority_queue&lt;node&gt; q;
+	q.push(s);
+	vis[sx][sy]=1;
+	while(!q.empty())&#123;
+		node fr=q.top();q.pop();
+		for(int i=0;i&lt;4;i++)&#123;
+			node next=&#123;fr.x+dir[i][0],fr.y+dir[i][1],fr.time+1&#125;;
+			if(next.x&lt;1||next.x&gt;n||next.y&gt;m||next.y&lt;1) continue;
+			if(vis[next.x][next.y]||Map[next.x][next.y]=='S'||Map[next.x][next.y]=='R') continue;
+			if(Map[next.x][next.y]=='B') next.time++;
+			if(Map[next.x][next.y]=='T')&#123;
+				return next.time;
+			&#125;
+			vis[next.x][next.y]=1;
+			q.push(next);
+		&#125;
+	&#125;
+	return -1;
+&#125;
+int main()&#123;
+	ios;
+	while(cin&gt;&gt;n&gt;&gt;m)&#123;
+		if(n==0&amp;&amp;m==0) break;
+		memset(vis,0,sizeof vis);
+		int sx,sy;
+		for(int i=1;i&lt;=n;i++)&#123;
+			for(int j=1;j&lt;=m;j++)&#123;
+				cin&gt;&gt;Map[i][j];
+				if(Map[i][j]=='Y')&#123;
+					sx=i;
+					sy=j;
+				&#125;
+			&#125;
+		&#125;
+		int ans=bfs(sx,sy);
+		cout&lt;&lt;ans&lt;&lt;'\n';
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="Dungeon-Master">Dungeon Master</h2>
+<blockquote>
+<p>You are trapped in a 3D dungeon and need to find the quickest way out! The dungeon is composed of unit cubes which may or may not be filled with rock. It takes one minute to move one unit north, south, east, west, up or down. You cannot move diagonally and the maze is surrounded by solid rock on all sides.</p>
+<p>Is an escape possible? If yes, how long will it take?</p>
+<p><strong>Input</strong></p>
+<p>The input consists of a number of dungeons. Each dungeon description starts with a line containing three integers L, R and C (all limited to 30 in size).<br>
+L is the number of levels making up the dungeon.<br>
+R and C are the number of rows and columns making up the plan of each level.<br>
+Then there will follow L blocks of R lines each containing C characters. Each character describes one cell of the dungeon. A cell full of rock is indicated by a ‘#’ and empty cells are represented by a ‘.’. Your starting position is indicated by ‘S’ and the exit by the letter ‘E’. There’s a single blank line after each level. Input is terminated by three zeroes for L, R and C.</p>
+<p><strong>Output</strong></p>
+<p>Each maze generates one line of output. If it is possible to reach the exit, print a line of the form</p>
+<p>​	Escaped in x minute(s).</p>
+<p>where x is replaced by the shortest time it takes to escape.<br>
+If it is not possible to escape, print the line</p>
+<p>​	Trapped!</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>3 4 5
+S....
+.###.
+.##..
+###.#
+
+#####
+#####
+##.##
+##...
+
+#####
+#####
+#.###
+####E
+
+1 3 3
+S##
+#E#
+###
+
+0 0 0
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>Escaped in 11 minute(s).
+Trapped!
+</code></pre>
+</blockquote>
+<h3 id="分析-v4">分析</h3>
+<p>这个题有点意思，是一个三维空间的BFS，一维二维都会了，三维自然是手到擒来了，按着模板写，添加一维就行了</p>
+<h3 id="CODE-v3">CODE</h3>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;string.h&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;set&gt;
+#define PI acos(-1)
+#define ios ios::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define debug freopen(&quot;in.txt&quot;,&quot;r&quot;,stdin); freopen(&quot;out.txt&quot;,&quot;w&quot;,stdout)
+using namespace std;
+typedef long long ll;
+const int N = 40;
+const int MOD = 1e9;
+const double eps = 1e-5;
+const int INF = 0x3f3f3f;
+struct node&#123;
+	int x,y,z,time;
+&#125;;
+int l,n,m;
+char Map[N][N][N];
+bool vis[N][N][N];
+int dir[6][3]=&#123;&#123;1,0,0&#125;,&#123;-1,0,0&#125;,&#123;0,1,0&#125;,&#123;0,-1,0&#125;,&#123;0,0,1&#125;,&#123;0,0,-1&#125;&#125;;
+bool check(node next)&#123;
+	if(next.x&lt;1||next.x&gt;n||next.y&gt;m||next.y&lt;1||next.z&lt;1||next.z&gt;l) return 0;
+	else return 1;
+&#125;
+int bfs(int sx,int sy,int sz)&#123;
+	node s=&#123;sx,sy,sz,0&#125;;
+	queue&lt;node&gt; q;
+	q.push(s);
+	vis[sz][sx][sy]=1;
+	while(!q.empty())&#123;
+		node fr=q.front();q.pop();
+		for(int i=0;i&lt;6;i++)&#123;
+			node next=&#123;fr.x+dir[i][0],fr.y+dir[i][1],fr.z+dir[i][2],fr.time+1&#125;;
+			if(!check(next)) continue;
+			if(vis[next.z][next.x][next.y]||Map[next.z][next.x][next.y]=='#') continue;
+			if(Map[next.z][next.x][next.y]=='E')&#123;
+				return next.time;
+			&#125;
+			vis[next.z][next.x][next.y]=1;
+			q.push(next);
+		&#125;
+	&#125;
+	return -1;
+&#125;
+int main()&#123;
+//	ios;
+	while(cin&gt;&gt;l&gt;&gt;n&gt;&gt;m)&#123;
+		if(l==0&amp;&amp;n==0&amp;&amp;m==0) break;
+		memset(vis,0,sizeof vis);
+		int sx,sy,sz;
+		for(int k=1;k&lt;=l;k++)&#123;
+			for(int i=1;i&lt;=n;i++)&#123;
+				for(int j=1;j&lt;=m;j++)&#123;
+					cin&gt;&gt;Map[k][i][j];
+					if(Map[k][i][j]=='S')&#123;
+						sx=i;
+						sy=j;
+						sz=k;
+					&#125;
+				&#125;
+			&#125;
+		&#125;
+		int ans=bfs(sx,sy,sz);
+		if(ans!=-1) cout&lt;&lt;&quot;Escaped in &quot;&lt;&lt;ans&lt;&lt;&quot; minute(s).&quot;&lt;&lt;'\n';
+		else cout&lt;&lt;&quot;Trapped!&quot;&lt;&lt;'\n';
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="Catch-That-Cow">Catch That Cow</h2>
+<blockquote>
+<p>Farmer John has been informed of the location of a fugitive cow and wants to catch her immediately. He starts at a point <em>N</em> (0 ≤ <em>N</em> ≤ 100,000) on a number line and the cow is at a point <em>K</em> (0 ≤ <em>K</em> ≤ 100,000) on the same number line. Farmer John has two modes of transportation: walking and teleporting.</p>
+<p>* Walking: FJ can move from any point <em>X</em> to the points <em>X</em> - 1 or <em>X</em> + 1 in a single minute<br>
+* Teleporting: FJ can move from any point <em>X</em> to the point 2 × <em>X</em> in a single minute.</p>
+<p>If the cow, unaware of its pursuit, does not move at all, how long does it take for Farmer John to retrieve it?</p>
+<p><strong>Input</strong></p>
+<p>Line 1: Two space-separated integers: <em>N</em> and <em>K</em></p>
+<p><strong>Output</strong></p>
+<p>Line 1: The least amount of time, in minutes, it takes for Farmer John to catch the fugitive cow.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>5 17
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>4
+</code></pre>
+</blockquote>
+<h3 id="分析-v5">分析</h3>
+<p>毒瘤的一道题目，没什么难度，就是感觉评测机器有问题，同样两段代码，放到函数和写在main函数里面不一样的结果。。。不信你可以试试</p>
+<h3 id="CODE-v4">CODE</h3>
+<pre><code class="language-c">#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+#include&lt;iostream&gt;
+using namespace std;
+int vis[1000001];
+struct node&#123;
+	int wei;
+	int time;
+&#125;;
+int main()
+&#123;
+	int n,k;
+	cin&gt;&gt;n&gt;&gt;k;
+	node start=&#123;n,0&#125;;
+	vis[n]=1;
+	queue&lt;node&gt;q;
+	q.push(start);
+	while(!q.empty())&#123;
+		node tmp=q.front(); q.pop(); 
+		if(tmp.wei==k)&#123;
+			cout&lt;&lt;tmp.time&lt;&lt;'\n';
+			break;
+		&#125;
+		for(int i=0;i&lt;3;i++)&#123;
+			node nx;
+			if(i==0) nx=&#123;tmp.wei+1,tmp.time+1&#125;;
+			else if(i==1) nx=&#123;tmp.wei-1,tmp.time+1&#125;;
+			else nx=&#123;tmp.wei*2,tmp.time+1&#125;;
+			if(nx.wei&lt;0||nx.wei&gt;100000||vis[nx.wei]) continue;
+			vis[nx.wei]=1;
+			q.push(nx);
+		&#125;
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="Number-Transformation">Number Transformation</h2>
+<blockquote>
+<p>In this problem, you are given an integer number <strong>s</strong>. You can transform any integer number <strong>A</strong> to another integer number <strong>B</strong> by adding <strong>x</strong> to <strong>A</strong>. This <strong>x</strong> is an integer number which is a prime factor of <strong>A</strong> (please note that 1 and <strong>A</strong> are not being considered as a factor of <strong>A</strong>). Now, your task is to find the minimum number of transformations required to transform <strong>s</strong> to another integer number <strong>t</strong>.</p>
+<p><strong>Input</strong></p>
+<p>Input starts with an integer <strong>T (****≤ 500)</strong>, denoting the number of test cases.</p>
+<p>Each case contains two integers: <strong>s (1 ≤ s ≤ 100)</strong> and <strong>t (1 ≤ t ≤ 1000)</strong>.</p>
+<p><strong>Output</strong></p>
+<p>For each case, print the case number and the minimum number of transformations needed. If it’s impossible, then print <strong>-1</strong>.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>2
+
+6 12
+
+6 13
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>Case 1: 2
+
+Case 2: -1
+</code></pre>
+</blockquote>
+<h3 id="分析-v6">分析</h3>
+<p>有意思的一道题目，给你两个数a和b，让你不断通过加a的质因子直到和b相等，有意思在哪里？这个质因子不是不变的，当a改变后，a的质因子也会发生改变，所以有两种做法，一个是每次增加都进行一次质因子分解，这也是很快的，根本不会超时，1000以内的任何一个数的质因子数量都是不超过10个的，第二种是开一个二维数组，打一个表，因为这里的b是小于1000的，我们可以开这么大的数组，存储某一个数的质因子，这里用了第二种做法，其实题目也不难，就是题目难以理解</p>
+<h3 id="CODE-v5">CODE</h3>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+#include&lt;math.h&gt;
+#include&lt;string.h&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int T,t,s;
+const int MAX=1e3+10;
+const int INF=0x3f3f3f;
+int vis[MAX];
+vector&lt;int&gt; vt[MAX];
+
+struct node&#123;
+	int x,step;
+&#125;;
+bool check(int n)&#123;
+	if(n==2||n==3) return 1;
+	if(n==1||n%6!=1&amp;&amp;n%6!=5) return 0;
+	for(int i=5;i*i&lt;=n;i++)&#123;
+		if(n%i==0||n%(i+2)==0) return 0;
+	&#125;
+	return 1;
+&#125;
+void prime()&#123;
+	for(int i=2;i&lt;MAX;i++)&#123;
+		for(int j=2;j&lt;i;j++)&#123;
+			if(i%j==0&amp;&amp;check(j)) vt[i].push_back(j);
+		&#125;
+	&#125;
+&#125;
+int bfs()&#123;
+	queue&lt;node&gt; q;
+	vis[s]=1;
+	node start;
+	start.x=s; start.step=0;
+	q.push(start);
+	while(!q.empty())&#123;
+		node tmp=q.front(); q.pop();
+		if(tmp.x==t) return tmp.step;
+		int len=vt[tmp.x].size();
+		for(int i=0;i&lt;len;i++)&#123;
+			node nx;
+			nx.x=tmp.x+vt[tmp.x][i];
+			nx.step=tmp.step+1;
+			if(nx.x&gt;t||vis[nx.x]) continue;
+			vis[nx.x]=1;
+			q.push(nx);
+		&#125;
+	&#125;
+	return -1;
+&#125;
+int main()
+&#123;
+	prime();
+	cin&gt;&gt;T;
+	int kase=0;
+	while(T--)&#123;
+		memset(vis,0,sizeof(vis));
+		scanf(&quot;%d%d&quot;,&amp;s,&amp;t);
+		int ans=INF;
+		ans=bfs();
+		printf(&quot;Case %d: %d\n&quot;,++kase,ans);
+	&#125;
+	return 0;
+&#125;
+</code></pre>
+<h2 id="G-Knight-Moves">G - Knight Moves</h2>
+<blockquote>
+<p>A friend of you is doing research on the Traveling Knight Problem (TKP) where you are to find the shortest closed tour of knight moves that visits each square of a given set of n squares on a chessboard exactly once. He thinks that the most difficult part of the problem is determining the smallest number of knight moves between two given squares and that, once you have accomplished this, finding the tour would be easy.<br>
+Of course you know that it is vice versa. So you offer him to write a program that solves the “difficult” part.</p>
+<p>Your job is to write a program that takes two squares a and b as input and then determines the number of knight moves on a shortest route from a to b.</p>
+<p><strong>Input</strong></p>
+<p>The input file will contain one or more test cases. Each test case consists of one line containing two squares separated by one space. A square is a string consisting of a letter (a-h) representing the column and a digit (1-8) representing the row on the chessboard.</p>
+<p><strong>Output</strong></p>
+<p>For each test case, print one line saying “To get from xx to yy takes n knight moves.”.</p>
+<p><strong>Sample Input</strong></p>
+<pre><code>e2 e4
+a1 b2
+b2 c3
+a1 h8
+a1 h7
+h8 a1
+b1 c3
+f6 f6
+</code></pre>
+<p><strong>Sample Output</strong></p>
+<pre><code>To get from e2 to e4 takes 2 knight moves.
+To get from a1 to b2 takes 4 knight moves.
+To get from b2 to c3 takes 2 knight moves.
+To get from a1 to h8 takes 6 knight moves.
+To get from a1 to h7 takes 5 knight moves.
+To get from h8 to a1 takes 6 knight moves.
+To get from b1 to c3 takes 1 knight moves.
+To get from f6 to f6 takes 0 knight moves.
+</code></pre>
+</blockquote>
+<h3 id="分析-v7">分析</h3>
+<p>只是把上下左右换成了马的走法而已</p>
+<h3 id="CODE-v6">CODE</h3>
+<pre><code class="language-c">#include&lt;string.h&gt;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+using namespace std;
+char ch1[3],ch2[3];
+int vis[9][9],ans;
+int dir[8][2]=&#123;&#123;2,1&#125;,&#123;-2,1&#125;,&#123;2,-1&#125;,&#123;-2,-1&#125;,&#123;1,2&#125;,&#123;1,-2&#125;,&#123;-1,2&#125;,&#123;-1,-2&#125;&#125;;
+struct node&#123;
+    int row,col,step;
+&#125;;
+void bfs()&#123;
+    queue&lt;node&gt; q;
+    node s;
+    s.row=ch1[1]-'1';
+    s.col=ch1[0]-'a';
+    s.step=0;
+    vis[s.row][s.col]=1;
+    q.push(s);
+    while(!q.empty())&#123;
+        node tmp=q.front(); q.pop();
+        if(tmp.row==(ch2[1]-'1')&amp;&amp;tmp.col==(ch2[0]-'a'))&#123;
+            if(tmp.step&lt;ans) ans=tmp.step;
+            return;
+        &#125;
+       	for(int i=0;i&lt;8;i++)&#123;
+           	node nx;
+    		nx.row=tmp.row+dir[i][0];
+    		nx.col=tmp.col+dir[i][1];
+        	if(!vis[nx.row][nx.col]&amp;&amp;nx.row&gt;=0&amp;&amp;nx.row&lt;8&amp;&amp;nx.col&gt;=0&amp;&amp;nx.col&lt;8)&#123;
+	            vis[nx.row][nx.col]=1;
+	            nx.step=tmp.step+1;
+	            q.push(nx);
+        	&#125;  
+       	&#125;
+    &#125;
+&#125;
+int main()
+&#123;
+    while(cin&gt;&gt;ch1&gt;&gt;ch2)&#123;
+        ans=1e9;
+	    memset(vis,0,sizeof(vis));
+	    bfs();
+	    cout&lt;&lt;&quot;To get from &quot;&lt;&lt;ch1&lt;&lt;&quot; to &quot;&lt;&lt;ch2&lt;&lt;&quot; takes &quot;&lt;&lt;ans&lt;&lt;&quot; knight moves.&quot;&lt;&lt;'\n';
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="噩梦">噩梦</h2>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/179/">题目链接</a></p>
+<blockquote>
+<p>给定一张N*M的地图，地图中有1个男孩，1个女孩和2个鬼。</p>
+<p>字符“.”表示道路，字符“X”表示墙，字符“M”表示男孩的位置，字符“G”表示女孩的位置，字符“Z”表示鬼的位置。</p>
+<p>男孩每秒可以移动3个单位距离，女孩每秒可以移动1个单位距离，男孩和女孩只能朝上下左右四个方向移动。</p>
+<p>每个鬼占据的区域每秒可以向四周扩张2个单位距离，并且无视墙的阻挡，也就是在第k秒后所有与鬼的曼哈顿距离不超过2k的位置都会被鬼占领。</p>
+<p><strong>注意：</strong> 每一秒鬼会先扩展，扩展完毕后男孩和女孩才可以移动。</p>
+<p>求在不进入鬼的占领区的前提下，男孩和女孩能否会合，若能会合，求出最短会合时间。</p>
+<h4 id="输入格式">输入格式</h4>
+<p>第一行包含整数T，表示共有T组测试用例。</p>
+<p>每组测试用例第一行包含两个整数N和M，表示地图的尺寸。</p>
+<p>接下来N行每行M个字符，用来描绘整张地图的状况。（注意：地图中一定有且仅有1个男孩，1个女孩和2个鬼）</p>
+<h4 id="输出格式">输出格式</h4>
+<p>每个测试用例输出一个整数S，表示最短会合时间。</p>
+<p>如果无法会合则输出-1。</p>
+<p>每个结果占一行。</p>
+<h4 id="数据范围">数据范围</h4>
+<p>1&lt;n,m&lt;8001&lt;n,m&lt;800</p>
+<h4 id="输入样例：">输入样例：</h4>
+<pre><code>3
+5 6
+XXXXXX
+XZ..ZX
+XXXXXX
+M.G...
+......
+5 6
+XXXXXX
+XZZ..X
+XXXXXX
+M.....
+..G...
+10 10
+..........
+..X.......
+..M.X...X.
+X.........
+.X..X.X.X.
+.........X
+..XX....X.
+X....G...X
+...ZX.X...
+...Z..X..X
+</code></pre>
+<h4 id="输出样例：">输出样例：</h4>
+<pre><code>1
+1
+-1
+</code></pre>
+</blockquote>
+<h3 id="分析-v8">分析</h3>
+<p>双向BFS，男孩和女孩轮流BFS，直到两者轨迹有交叉</p>
+<h3 id="CODE-v7">CODE</h3>
+<pre><code class="language-c">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int N=810;
+typedef pair&lt;int,int&gt; pii;
+int n,m;
+pii boy,girl,ghost[2];
+int vis[N][N],dx[4]=&#123;1,0,-1,0&#125;,dy[4]=&#123;0,1,0,-1&#125;;
+char g[N][N];
+bool check(int x,int y,int k)&#123;
+    if(x&lt;1||x&gt;n||y&lt;1||y&gt;m||g[x][y]=='X') return false; 
+    for(int i=0;i&lt;2;i++)&#123;   
+        if(abs(x-ghost[i].first)+abs(y-ghost[i].second)&lt;=2*k) return false;
+    &#125;
+    return true;
+&#125;
+int bfs()&#123;
+    queue&lt;pii&gt; qb,qg;
+    qb.push(boy); qg.push(girl);
+    int step=0;
+    while(!qb.empty()||!qg.empty())&#123;
+    	step++;
+    	for(int k=0;k&lt;3;k++)&#123;
+    		for(int j=0,len=qb.size();j&lt;len;j++)&#123;
+    			int x=qb.front().first;
+    			int y=qb.front().second;
+    			qb.pop();
+    			if(!check(x,y,step)) continue;
+    			for(int i=0;i&lt;4;i++)&#123;
+    				int nx=x+dx[i];
+    				int ny=y+dy[i];
+    				if(!check(nx,ny,step)) continue;
+					if(vis[nx][ny]==2) return step;
+    				if(!vis[nx][ny])&#123;
+    					vis[nx][ny]=1;
+    					qb.push(&#123;nx,ny&#125;);
+					&#125;
+				&#125;
+			&#125;
+		&#125;
+		for(int k=0;k&lt;1;k++)&#123;
+			for(int j=0,len=qg.size();j&lt;len;j++)&#123;
+				int x=qg.front().first;
+				int y=qg.front().second;
+				qg.pop();
+				if(!check(x,y,step)) continue;
+				for(int i=0;i&lt;4;i++)&#123;
+					int nx=x+dx[i];
+					int ny=y+dy[i];
+					if(!check(nx,ny,step)) continue;
+					if(vis[nx][ny]==1) return step;
+					if(!vis[nx][ny])&#123;
+						vis[nx][ny]=2;
+						qg.push(&#123;nx,ny&#125;);
+					&#125;
+					
+				&#125;
+			&#125;	
+		&#125;
+	&#125;
+    return -1;
+&#125;
+int main()
+&#123;
+	int t;
+	cin&gt;&gt;t;
+	while(t--)&#123;
+		memset(vis,0,sizeof vis);
+		cin&gt;&gt;n&gt;&gt;m;
+		int cnt=0;
+		for(int i=1;i&lt;=n;i++)&#123;
+			for(int j=1;j&lt;=m;j++)&#123;
+				cin&gt;&gt;g[i][j];
+				if(g[i][j]=='M') boy=&#123;i,j&#125;;
+				if(g[i][j]=='G') girl=&#123;i,j&#125;;
+				if(g[i][j]=='Z') ghost[cnt++]=&#123;i,j&#125;;
+			&#125;
+		&#125;
+		cout&lt;&lt;bfs()&lt;&lt;'\n';
+	&#125;	
+	return 0;
+ &#125; 
+</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/donate/WeChanSQ.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2020/07/26/jifen2/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/69.webp" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/69.webp">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                积分赛2</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2020/07/21/juzhenkuaisumi/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.4/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/67.webp" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/uncleacc/Img/textbg/67.webp">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                浅谈矩阵快速幂</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "pa33t4XrdRebMF7X622SEIws-MdYXbMMI",
+        appKey: "x1GdhrTESDw2gSwPcPqiU4UX",
+        path: window.location.pathname,
+        placeholder: "绿叶衬托了红花，白云渲染了蓝天，而你温柔了我的心，留下你的评论，一起加入讨论吧 ...",
+        avatar: 'wavatar',
+        notify: true,
+        verify: false,
+        pageSize: 10
+      })
+  }
+  // 点击回复直接评论,官方版本点击回复时都是跳回到页面上方的评论框进行回复，评论框是固定不动的
+  // 参考https://immmmm.com/valine-diy,用到jQuery
+  $(document).ready(function(){
+      //$('.vemoji-btn').text('😀');
+      $("#vcomments").on('click', 'span.vat',function(){
+          $(this).parent('div.vmeta').next("div.vcontent").after($("div.vwrap"));
+          $('textarea#veditor').focus();
+      })
+  })
+</script>
+
+  
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3616765171,3721318254&fm=26&gp=0.jpg" itemprop="image" alt="uncleacc" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author">uncleacc</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>一个好奇的人</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+
+            </div>
+            <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+            <footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2020 Uncleacc</p>
+    </div>
+    <!-- <i class="fa fa-fire" aria-hidden="true"></i> -->
+    <span style="color: #b9b9b9;padding-left: 20px;">
+      <i class="fa fa-clock-o" aria-hidden="true"></i>
+      <span id="time" align="center">载入时间中...</span>
+      <script>
+        var now = new Date(); 
+        function createtime() { 
+          var grt= new Date("2020-03-29 23:20:00");//在此处修改你的建站时间
+          now.setTime(now.getTime()+250); 
+          days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+          if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+          mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+          snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+          document.getElementById("time").innerHTML = "小站已经苟活 "+ dnum +" 天 "+hnum + " 小时 " + mnum + " 分 " + snum + " 秒";      
+       } 
+       setInterval("createtime()",250);
+      </script>
+    <!-- 结束 -->
+    <div id="binft"></div>
+  <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a></a>
+        </span>
+      </p>
+    </div>
+    <p></p>
+  <div><a href="http://www.beian.miit.gov.cn/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@v3.2.8/butterfly/img/icp.png"><span>豫 ICP 备 20021246 号</span></a></div>
+  <br>
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://hexo.io/" target="_blank" title="由 Hexo 强力驱动">
+    <span class="badge-subject">Powered</span><span class="badge-value bg-blue">Hexo</span></a>
+  </div>
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://github.com/" target="_blank" title="静态网页托管于Github和Coding">
+    <span class="badge-subject">Hosted</span><span class="badge-value bg-red">Github&Coding</span></a>
+  </div>
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://www.aliyun.com/" target="_blank" title="阿里云提供域名相关服务">
+    <span class="badge-subject">DNS</span><span class="badge-value bg-red">Aliyun</span></a>
+  </div>
+  <div class="github-badge">
+    <a style="color: #fff" rel="license" href="https://www.jsdelivr.com/" target="_blank" title="jsDelivr 提供 CDN 加速服务">
+    <span class="badge-subject">CDN</span><span class="badge-value bg-brightgreen">jsDelivr</span></a>
+  </div>
+  <div class="github-badge">
+    <span class="badge-subject">UV</span><span class="badge-value bg-orange" id="busuanzi_value_site_uv" target="_blank" title="本站访客量"></span>
+  </div>
+  <div class="github-badge">
+    <span class="badge-subject">PV</span><span class="badge-value bg-orange" id="busuanzi_value_site_pv" target="_blank" title="本站浏览量"></span>
+  </div>
+  <div class="github-badge">
+    <span class="badge-subject">WordCount</span><span class="badge-value bg-blueviolet post-count" target="_blank" title="全站字数">125.9k</span>
+  </div>
+  <img src="https://cdn.jsdelivr.net/gh/drew233/cdn//20191003172815.webp" style="position: relative; top: 80px;" alt="">
+
+  </div><!-- .site-info -->
+  <!--壁纸切换-->
+  <div class="skin-menu no-select" id="mainskin"  style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+    <div class="font-family-controls row-container">
+        <button type="button" class="control-btn-serif selected" data-mode="serif" onclick="mashiro_global.font_control.change_font()">Serif</button>
+        <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+    </div>
+  </div>   
+  <canvas id="night-mode-cover"></canvas> 
+  <div class="changeSkin-gear no-select">
+    <div class="keys" id="setbtn"> <span id="open-skinMenu"> <font color="black" size=4> 切换壁纸 | SCHEME TOOL </font>
+      &nbsp;<i class="iconfont icon-gear inline-block rotating"></i> </span></div>
+  </div>
+  <!-- 结束 -->
+</footer>
+
+<!-- fancybox大图查看 需jq -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<!-- <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script> -->
+<!-- 高版本1.4.5的Valine -->
+<script src='/js/valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.3/","name":"The%20Pet%20Girl%20of%20Sakurasou.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.3/","name":"The%20Pet%20Girl%20of%20Sakurasou.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+            <div class="openNav no-select" style="height: 50px;">
+                <div class="iconflat no-select" style="width: 50px; height: 50px;">
+                    <div class="icon"></div>
+                </div>
+                <div class="site-branding search-form-submit">
+                    <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+                </div>
+            </div>
+    </section>
+    <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/uncleacc/cdn@1.5/img/custom/avatar.png">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">Uncleacc</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/uncleacc" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+        <a href="https://wpa.qq.com/msgrd?v=3&uin=601162956&site=qq&menu=yes" class="fa fa-qq" target="_blank" style="color: #25c6fe; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/%E7%AE%97%E6%B3%95/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  算法
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E9%A2%98%E7%9B%AE/">
+                  <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                  题目
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E7%94%9F%E6%B4%BB/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E8%AE%B0%E5%BD%95/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  记录
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/%E6%8A%80%E6%9C%AF/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                  <i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/analytics/">
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  统计
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/shuoshuo/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-commenting-o fa-commenting" aria-hidden="true"></i>
+            说说
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-tag" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  对话
+                </a>
+              </li>
+            
+              <li>
+                <a href="/custom/">
+                  <i class="fa fa-address-book" aria-hidden="true"></i>
+                  我
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+            <!-- 动态线条 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script> -->
+            <!-- 彩带 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script> -->
+            <!-- 樱花飘落 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/sakura.js"></script> -->
+            <!-- 伴娘 -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+            <!-- 这条在sakura中已有，可不添加 -->
+            <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+            <!-- 预加载 -->
+            <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+            <!-- 点击出现社会主义彩色文字 -->
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/shehuizhuyi.js"></script> -->
+            <!-- 点击出现爱心 -->   
+            <!-- <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/love.js"></script> -->  
+            <link rel="stylesheet" href="/css/APlayer.min.css">
+<script src="/js/APlayer.min.js"></script>
+<div id="aplayer" class="aplayer" data-id="459792285" data-server="netease"
+  data-type="playlist" data-fixed="true" data-listfolded="true" data-order="random" data-theme="#F58EA8"></div>
+<script src="/js/music.js"></script>
+<!-- 添加aplayer播放器 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+</body>
+</html>
