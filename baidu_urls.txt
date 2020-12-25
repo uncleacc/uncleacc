@@ -3,4 +3,4 @@ https://www.fezhu.top/2020/12/10/BeautifyWin10/
 https://www.fezhu.top/2020/12/03/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5/
 https://www.fezhu.top/2020/11/30/Binary-Tree/
 https://www.fezhu.top/2020/11/26/SPFA/
-https://www.fezhu.top/2020/11/23/bz&&tarjan/
+https://www.fezhu.top/2020/11/23/bzyutarjan/
