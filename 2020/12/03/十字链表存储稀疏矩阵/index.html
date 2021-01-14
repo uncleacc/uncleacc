@@ -528,7 +528,7 @@ struct CrossList&#123;  //矩阵结构
 		&#125;
 		else&#123;
 			OLink j;
-			for(j=CL.Rhead[row];j-&gt;right &amp;&amp; j-&gt;right-&gt;col&lt;col;j=j-&gt;right);  //找到插入位置
+			for(j=CL.Rhead[row];j-&gt;right &amp;&amp; j-&gt;right-&gt;col&lt;=col;j=j-&gt;right);  //找到插入位置
 			if(j-&gt;col==col)&#123;  //当当前坐标有值时覆盖它
 				j-&gt;val=val;
 				continue;
